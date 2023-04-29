@@ -13,6 +13,7 @@ async function getData() {
 const dataPromise = getData();
 
 const prepareDataRepositories = (repositories: any) => {
+    if (repositories.length == 0 || !repositories) return []
     let arrayPrepare: any[] = []
     repositories.forEach((repo: any, index: any) => {
         if (repo.owner.login == 'marcolongitude') {
