@@ -1,5 +1,3 @@
-'use client'
-
 import { use } from 'react';
 import CardProject from './CardProject';
 import AnimationContainer from '../utils/AnimationContainer';
