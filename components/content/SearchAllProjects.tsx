@@ -6,7 +6,7 @@ import AnimationContainer from '../utils/AnimationContainer';
 // import { CardProjectProps } from '@/types';
 
 async function getData() {
-    const apikey = "Bearer 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"
+    const apikey = "Bearer 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"
     const res = await fetch('https://api.github.com/user/repos?per_page=100', { headers: { Authorization: apikey } });
     return res.json();
 }
