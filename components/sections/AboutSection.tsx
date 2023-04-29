@@ -7,19 +7,19 @@ import TitleSectionPageContainer from '../utils/TitleSectionPageContainer';
 
 const skills = [
   {
-    title: 'Languages',
+    title: 'Linguagens de programação',
     techs: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'C#', '.NET', 'NET-CORE']
   },
   {
-    title: 'Frameworks and libraries',
+    title: 'Frameworks e bibliotecas',
     techs: ['jQuery', 'React', 'Next.js', 'NET FRAMEWORK']
   },
   {
-    title: 'JavaScript libraries',
+    title: 'Bibliotecas de JavaScript',
     techs: ['Redux', 'Redux-toolkit', 'react-router-dom', 'Formik', 'Jest', 'React-hook-form']
   },
   {
-    title: 'Preprocessors, css style, component and motion libraries',
+    title: 'Pre-processadoes, css style, componentes',
     techs: ['Scss', 'Sass', 'Less', 'Bootstrap', 'Tailwind', 'ChakraUI', 'MaterialUI']
   },
   {
@@ -27,11 +27,11 @@ const skills = [
     techs: ['Node.js', 'Express.js', 'Firebase', 'Docker']
   },
   {
-    title: 'Softwares and tools',
+    title: 'Softwares e ferramentas',
     techs: ['VS Code', 'Jira', 'ClickUP', 'Trello', 'Git', 'GitHub', 'ESLint', 'Husky', 'Figma']
   },
   {
-    title: 'Agile methodologies and coding principles',
+    title: 'Metodologias ágeis e princípios de codificação',
     techs: ['SCRUM', 'Kanban', 'Clean Code', 'SOLID principles', 'Clean Architecture']
   }
 ];

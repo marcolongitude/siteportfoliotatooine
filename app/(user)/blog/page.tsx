@@ -6,7 +6,7 @@ const Blog = () => (
 
     <div className='w-full flex flex-col items-center gap-6' style={{ height: '100vh' }}>
 
-      <TitleSectionPageContainer title='Coming soon...' />
+      <TitleSectionPageContainer title='Em produção...' />
 
     </div>
 
