@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import AnimationContainer from '../utils/AnimationContainer';
+import { Text } from '../generics/text';
+
+const phraseTop = "Sempre em processo de evolução. O gosto pela tecnologia e a busca por novas aptidões."
 
 const Hero = () => {
   return (
@@ -22,9 +25,9 @@ const Hero = () => {
 
         </h2>
 
-        <p className='w-full text-base text-center lg:text-start mb-5 lg:mb-0 text-gray-300 mx-auto lg:mx-0'>
-          Sempre em processo de evolução. O gosto pela tecnologia e a busca por novas aptidões.
-        </p>
+        <Text
+          phrase={phraseTop}
+        />
 
       </AnimationContainer>
 

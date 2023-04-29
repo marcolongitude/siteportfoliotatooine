@@ -1,4 +1,7 @@
 import AnimationContainer from '../utils/AnimationContainer';
+import { Text } from '../generics/text';
+
+const phraseAboutMe = "Trabalho com tecnologia desde os 16 anos e sempre motivado a aprender novas stacks pelo grande amor ao desenvolvimento."
 
 const AboutMe = () => {
   return (
@@ -8,9 +11,9 @@ const AboutMe = () => {
         Sobre
       </h2>
 
-      <p className='text-base text-gray-400'>
-        Trabalho com tecnologia desde os 16 anos e sempre motivado a aprender novas stacks pelo grande amor ao desenvolvimento.
-      </p>
+      <Text
+        phrase={phraseAboutMe}
+      />
 
     </AnimationContainer>
   )

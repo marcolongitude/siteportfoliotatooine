@@ -5,6 +5,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { createStyles, Paper, Text, Title, useMantineTheme } from '@mantine/core';
 import ExternalLink from '../ui/ExternalLink';
 import AnimationContainer from '../utils/AnimationContainer';
+import { Text as TextGenerics } from '../generics/text'
 
 const useStyles = createStyles((theme: any) => ({
   card: {
@@ -148,9 +149,10 @@ const FavProjects = () => {
         Projetos
       </h2>
 
-      <p className='text-base text-gray-400 mb-10 text-start'>
-        Atualmente meus estudos estão listados no meu <a href={myGithub} target='_blank' rel='noopener noreferrer' className='hover:text-white hover:underline transition-all ease'>GitHub</a>.
-      </p>
+      <div className='flex gap-2'>
+        <TextGenerics phrase='Atualmente meus estudos estão listados no meu' />
+        <a href={myGithub} target='_blank' rel='noopener noreferrer' className='text-zinc-300 hover:text-white hover:underline transition-all ease'>GitHub</a>.
+      </div>
 
       {/* <Carousel
         slideSize='50%'

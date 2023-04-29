@@ -1,4 +1,5 @@
 import CurrentTimeLineExp from '../content/CurrentTimeLineExp';
+import { Text } from '../generics/text';
 import AnimationContainer from '../utils/AnimationContainer';
 import SectionContainer from '../utils/SectionContainer';
 import ShowSkills from '../utils/ShowSkills';
@@ -35,6 +36,10 @@ const skills = [
   }
 ];
 
+const phraseAboutMe = "Trabalho com tecnologia desde os 16 anos e sempre motivado a aprender novas stacks pelo grande amor ao desenvolvimento."
+const phraseSkillAndTools = "Uma lista de todas as tecnologias que já trabalhei e me empenho em conhecer melhor:"
+const phraseInterest = "Tenho interesse em aprender tecnoligias cloud nas áreas de deploys C.I. e C.D., gerencimento de containeres etc."
+
 const AboutSection = () => {
   return (
     <SectionContainer>
@@ -45,13 +50,9 @@ const AboutSection = () => {
 
         <AnimationContainer customClassName='w-full flex flex-col gap-5 mb-8'>
 
-          <p className='text-base text-gray-400'>
-
-          </p>
-
-          <p className='text-base text-gray-400'>
-            Trabalho com tecnologia desde os 16 anos e sempre motivado a aprender novas stacks pelo grande amor ao desenvolvimento.
-          </p>
+          <Text
+            phrase={phraseAboutMe}
+          />
 
         </AnimationContainer>
 
@@ -61,9 +62,9 @@ const AboutSection = () => {
 
           <h2 className='font-bold text-2xl md:text-2xl tracking-tight mb-2 text-white text-start'>Skills e Ferramentas</h2>
 
-          <p className='text-base text-gray-400'>
-            Uma lista de todas as tecnologias que já trabalhei e me empenho em conhecer melhor:
-          </p>
+          <Text
+            phrase={phraseSkillAndTools}
+          />
 
           <div className='flex flex-col items-start gap-3 mt-3'>
 
@@ -89,9 +90,9 @@ const AboutSection = () => {
 
           <h2 className='font-bold text-2xl md:text-2xl tracking-tight mb-2 text-white text-start'>Interesses</h2>
 
-          <p className='text-base text-gray-400'>
-            Tenho interesse em aprender tecnoligias cloud nas áreas de deploys C.I. e C.D., gerencimento de containeres etc.
-          </p>
+          <Text
+            phrase={phraseInterest}
+          />
 
         </AnimationContainer>
 
