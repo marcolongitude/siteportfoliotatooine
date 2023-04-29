@@ -41,7 +41,7 @@ const AboutSection = () => {
 
       <div className='w-full flex flex-col gap-6'>
 
-        <TitleSectionPageContainer title='About me' />
+        <TitleSectionPageContainer title='Sobre' />
 
         <AnimationContainer customClassName='w-full flex flex-col gap-5 mb-8'>
 
