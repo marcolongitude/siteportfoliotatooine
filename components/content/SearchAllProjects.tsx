@@ -1,64 +1,74 @@
-'use client';
 
-import { useState } from 'react';
+import { use } from 'react';
 import CardProject from './CardProject';
 import AnimationContainer from '../utils/AnimationContainer';
-import { CardProjectProps } from '@/types';
+// import { CardProjectProps } from '@/types';
 
-const allProjectsInfo = [
-  {
-    id: '1',
-    title: 'Portfólio Marco Aurélio',
-    des: 'Projeto de página de portfólio ( NextJS, TypeScript, TailWind-CSS).',
-    category: 'javascript NextJS',
-    repo: 'https://github.com/marcolongitude/siteportfoliotatooine',
-    link: 'https://github.com/marcolongitude/siteportfoliotatooine'
-  },
-  {
-    id: '2',
-    title: 'Clone Spofify',
-    des: 'Clone para estudos de NextJS e TailWind ( RocketSeat )',
-    category: 'javascript - NextJS - Tailwind-CSS',
-    repo: 'https://github.com/marcolongitude/clonespotifytailwindrocketseat',
-    link: 'https://github.com/marcolongitude/clonespotifytailwindrocketseat'
-  }
-];
+async function getData() {
+    const apikey = "Bearer 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"
+    const res = await fetch('https://api.github.com/user/repos?per_page=100', { headers: { Authorization: apikey } });
+    return res.json();
+}
+
+const dataPromise = getData();
+
+const prepareDataRepositories = (repositories: any) => {
+    let arrayPrepare: any[] = []
+    repositories.forEach((repo: any, index: any) => {
+        if (repo.owner.login == 'marcolongitude') {
+            arrayPrepare.push(
+                {
+                    id: index,
+                    title: repo.name,
+                    des: repo.description,
+                    category: 'javascript',
+                    repo: repo.git_url,
+                    link: repo.url
+                }
+            )
+        }
+    })
+
+    return arrayPrepare
+}
+
+
 
 const SearchAllProjects = () => {
+    const repositories = use(dataPromise);
+    const allProjectsInfo = prepareDataRepositories(repositories)
+    // const [projectSearch, setProjectSearch] = useState<string>('');
+    // const resultSearch: CardProjectProps[] = allProjectsInfo.filter(project => project.category.includes(projectSearch.toLowerCase()))
 
-  const [projectSearch, setProjectSearch] = useState<string>('');
+    return (
+        <>
+            <AnimationContainer customClassName='w-full group flex flex-col justify-center items-center mb-8'>
 
-  const resultSearch: CardProjectProps[] = allProjectsInfo.filter(project => project.category.includes(projectSearch.toLowerCase()))
+                {/* <div className='w-full flex items-center lg:w-3/6 h-12 rounded shadow-lg bg-black border border-gray-800 group-hover:border-gray-500 transition-all ease'>
 
-  return (
-    <>
-      <AnimationContainer customClassName='w-full group flex flex-col justify-center items-center mb-8'>
+                    <div className='grid place-items-center h-full w-12 text-gray-500'>
+                        <svg xmlns='http://www.w3.org/2000/svg' className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='1' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
+                        </svg>
+                    </div>
 
-        <div className='w-full flex items-center lg:w-3/6 h-12 rounded shadow-lg bg-black border border-gray-800 group-hover:border-gray-500 transition-all ease'>
+                    <input
+                        className='peer h-full w-full outline-none rounded text-sm bg-black px-2 group-hover:border-gray-500 transition-all ease'
+                        type='text'
+                        id='search'
+                        placeholder='Languages, frameworks, libraries, etc...'
+                        onChange={e => setProjectSearch(e.target.value)} />
+                </div> */}
 
-          <div className='grid place-items-center h-full w-12 text-gray-500'>
-            <svg xmlns='http://www.w3.org/2000/svg' className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='1' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
-            </svg>
-          </div>
+            </AnimationContainer>
 
-          <input
-            className='peer h-full w-full outline-none rounded text-sm bg-black px-2 group-hover:border-gray-500 transition-all ease'
-            type='text'
-            id='search'
-            placeholder='Languages, frameworks, libraries, etc...'
-            onChange={e => setProjectSearch(e.target.value)} />
-        </div>
-
-      </AnimationContainer>
-
-      <article className='w-full flex justify-center items-center content-center flex-wrap gap-6 mx-auto'>
-        {
-          resultSearch.map(({ id, title, des, category, repo, link }) => <CardProject key={id} title={title} des={des} category={category} repo={repo} link={link} />)
-        }
-      </article>
-    </>
-  )
+            <article className='w-full flex justify-center items-center content-center flex-wrap gap-6 mx-auto'>
+                {
+                    allProjectsInfo.map(({ id, title, des, category, repo, link }) => <CardProject key={id} title={title} des={des} category={category} repo={repo} link={link} />)
+                }
+            </article>
+        </>
+    )
 
 }
 
