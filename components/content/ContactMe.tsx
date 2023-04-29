@@ -23,10 +23,10 @@ const ContactMe = () => {
             </div>
           </a>
 
-          <a href='https://walink.co/2369d5' target='_blank' rel='noreferrer' className='w-full'>
+          <a href='https://wa.me/5564992959483' target='_blank' rel='noreferrer' className='w-full'>
             <div className='rounded border border-gray-800 hover:border-gray-900 bg-gray-900 p-4 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] sm:p-6 transition ease'>
               <h6 className='font-bold text-1xl tracking-tight text-white text-start'>
-                Celular
+                Celular ( Whatsapp )
               </h6>
               <p className='text-base mt-2 text-gray-400'>
                 +55 (64) 99295 9483
@@ -37,11 +37,11 @@ const ContactMe = () => {
         </div>
 
         <div className='w-full flex justify-center items-center flex-col'>
-          <form action='https://formsubmit.co/jeanrdev@gmail.com' method='POST' className='w-full space-y-4'>
+          <form action='' method='POST' className='w-full space-y-4'>
             <div>
               <label className='sr-only' htmlFor='name'>Nome</label>
               <input
-                className='w-full rounded p-3 text-base outline-none border bg-black border-gray-800 focus:border-gray-500 transition ease'
+                className='w-full rounded p-3 text-white outline-none border bg-black border-gray-800 focus:border-gray-500 transition ease'
                 placeholder='Nome'
                 type='text'
                 id='name'
@@ -54,7 +54,7 @@ const ContactMe = () => {
               <div>
                 <label className='sr-only' htmlFor='email'>Email</label>
                 <input
-                  className='w-full rounded p-3 text-base outline-none border bg-black border-gray-800 focus:border-gray-500 transition ease'
+                  className='w-full rounded p-3 text-white outline-none border bg-black border-gray-800 focus:border-gray-500 transition ease'
                   placeholder='Email'
                   type='email'
                   id='email'
@@ -66,7 +66,7 @@ const ContactMe = () => {
               <div>
                 <label className='sr-only' htmlFor='phone'>Celular</label>
                 <input
-                  className='w-full rounded p-3 text-base outline-none border bg-black border-gray-800 focus:border-gray-500 transition ease'
+                  className='w-full rounded p-3 text-white outline-none border bg-black border-gray-800 focus:border-gray-500 transition ease'
                   placeholder='Celular'
                   type='tel'
                   id='phone'
@@ -79,7 +79,7 @@ const ContactMe = () => {
             <div>
               <label className='sr-only' htmlFor='message'>Mensagem</label>
               <textarea
-                className='w-full h-32 rounded p-3 text-base outline-none border bg-black border-gray-800 focus:border-gray-500 transition ease'
+                className='w-full h-32 rounded p-3 text-white outline-none border bg-black border-gray-800 focus:border-gray-500 transition ease'
                 placeholder='Mensagem'
                 id='message'
                 name='message'
@@ -89,9 +89,9 @@ const ContactMe = () => {
 
             <button
               type='submit'
-              className='flex items-center justify-center rounded px-5 py-3 text-white bg-black hover:bg-gray-800 shadow-sm transition ease mx-auto'
+              className='w-full flex items-center justify-center rounded-xl px-5 py-3 text-white bg-zinc-700 hover:bg-gray-800 shadow-sm transition ease mx-auto'
             >
-              <span className='font-medium text-base'>Enviar</span>
+              <span className='font-medium text-base'>Enviar mensagem de contato</span>
 
               <svg
                 xmlns='http://www.w3.org/2000/svg'
