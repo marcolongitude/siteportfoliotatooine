@@ -39,12 +39,12 @@ const Hero = () => {
           src='/marcoaurelio.jpg'
           sizes='30vw'
           priority
-          className='rounded-full filter grayscale hover:grayscale-0 transition ease'
+          className='rounded-full filter grayscale duration-500 hover:scale-105'
         />
       </AnimationContainer>
 
     </div>
   )
 }
-
+//transform h-64 bg-blue-400 w-80 transition duration-500 hover:scale-125 hover:bg-blue-600 flex justify-center items-center
 export default Hero;
