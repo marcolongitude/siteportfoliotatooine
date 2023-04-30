@@ -1,35 +1,35 @@
-import { ReactElement, use } from 'react';
+import { ReactElement, use, useState } from 'react';
 import CardProject from './CardProject';
 import AnimationContainer from '../utils/AnimationContainer';
 // import { CardProjectProps } from '@/types';
 
-// async function getData() {
-//     const apikey = "Bearer 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"
-//     const res = await fetch('https://api.github.com/user/repos?per_page=100', { headers: { Authorization: apikey } });
-//     return res.json();
-// }
+async function getData() {
+    const apikey = "Bearer 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"
+    const res = await fetch('https://api.github.com/user/repos?per_page=100', { headers: { Authorization: apikey } });
+    return res.json();
+}
 
-// const prepareDataRepositories = async () => {
-//     const repositories = await getData();
-//     if (repositories.length == 0 || !repositories) return []
-//     let arrayPrepare: any[] = []
-//     repositories.forEach((repo: any, index: any) => {
-//         if (repo.owner.login == 'marcolongitude') {
-//             arrayPrepare.push(
-//                 {
-//                     id: index,
-//                     title: repo.name,
-//                     des: repo.description,
-//                     category: 'javascript',
-//                     repo: repo.git_url,
-//                     link: repo.url
-//                 }
-//             )
-//         }
-//     })
+const prepareDataRepositories = async () => {
+    const repositories = await getData();
+    if (repositories.length == 0 || !repositories) return []
+    let arrayPrepare: any[] = []
+    repositories.forEach((repo: any, index: any) => {
+        if (repo.owner.login == 'marcolongitude') {
+            arrayPrepare.push(
+                {
+                    id: index,
+                    title: repo.name,
+                    des: repo.description,
+                    category: 'javascript',
+                    repo: repo.git_url,
+                    link: repo.url
+                }
+            )
+        }
+    })
 
-//     return arrayPrepare
-// }
+    return arrayPrepare
+}
 
 type Propstype = {
     id: any;
@@ -42,7 +42,9 @@ type Propstype = {
 
 
 
-const SearchAllProjects = (prop: { allProjectsInfo: Propstype[] }) => {
+const SearchAllProjects = () => {
+    const allProjectsInfo = use(prepareDataRepositories())
+
     // const [projectSearch, setProjectSearch] = useState<string>('');
     // const resultSearch: CardProjectProps[] = allProjectsInfo.filter(project => project.category.includes(projectSearch.toLowerCase()))
 
@@ -70,7 +72,7 @@ const SearchAllProjects = (prop: { allProjectsInfo: Propstype[] }) => {
 
             <article className='w-full flex justify-center items-center content-center flex-wrap gap-6 mx-auto'>
                 {
-                    prop.allProjectsInfo && prop.allProjectsInfo.map(({ id, title, des, category, repo, link }) => <CardProject key={id} title={title} des={des} category={category} repo={repo} link={link} />)
+                    allProjectsInfo && allProjectsInfo.map(({ id, title, des, category, repo, link }) => <CardProject key={id} title={title} des={des} category={category} repo={repo} link={link} />)
                 }
             </article>
         </>
