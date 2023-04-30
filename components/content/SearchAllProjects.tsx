@@ -5,34 +5,33 @@ import AnimationContainer from '../utils/AnimationContainer';
 
 async function getData(): Promise<any> {
     const apikey = "Bearer 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"
-    const res = await fetch('https://api.github.com/user/repos?per_page=100', { headers: { Authorization: apikey } });
-    const data = res.json();
-    const response = await data
+    const res = (await fetch(
+        'https://api.github.com/user/repos?per_page=100',
+        { headers: { Authorization: apikey } }
+    )).json();
+    const response: any[] = await res
 
-    if (response) {
-        let arrayPrepare: Propstype[] = []
-        response.forEach((repo: any, index: any) => {
-            if (repo.owner.login == 'marcolongitude') {
-                arrayPrepare.push(
-                    {
-                        id: index,
-                        title: repo.name,
-                        des: repo.description,
-                        category: 'javascript',
-                        repo: repo.git_url,
-                        link: repo.url
-                    }
-                )
+    let arrayPrepared: Propstype[] = []
+
+    if (typeof response === 'object' && response.length > 0) {
+        response.forEach((repo: any) => {
+            if (repo && repo?.owner?.login == 'marcolongitude') {
+                arrayPrepared.push({
+                    id: repo.id,
+                    title: repo.name,
+                    des: repo.description,
+                    category: 'javascript',
+                    repo: repo.git_url,
+                    link: repo.url
+                })
+
             }
         });
 
-
-        // let objPrepared = prepareDataRepositories(response)
-        return arrayPrepare
+        return arrayPrepared
     }
 
     return []
-
 }
 
 // const prepareDataRepositories = (repositories: any) => {
