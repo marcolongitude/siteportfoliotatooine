@@ -6,7 +6,45 @@ import TitleSectionPageContainer from '../utils/TitleSectionPageContainer';
 
 const phraseText = "Estes são meus projetos, a maioria deles são pessoais que uso para estudos e pesquisas, atualização e prática."
 
-const ProjectsSection = () => {
+async function getData() {
+  const apikey = "Bearer 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"
+  const res = await fetch('https://api.github.com/user/repos?per_page=100', { headers: { Authorization: apikey } });
+  return res.json();
+}
+
+type Propstype = {
+  id: any;
+  title: any;
+  des: any;
+  category: any;
+  repo: any;
+  link: any;
+}
+
+const prepareDataRepositories = async () => {
+  const repositories = await getData();
+  if (repositories.length == 0 || !repositories) return []
+  let arrayPrepare: Propstype[] = []
+  repositories.forEach((repo: any, index: any) => {
+      if (repo.owner.login == 'marcolongitude') {
+          arrayPrepare.push(
+              {
+                  id: index,
+                  title: repo.name,
+                  des: repo.description,
+                  category: 'javascript',
+                  repo: repo.git_url,
+                  link: repo.url
+              }
+          )
+      }
+  })
+
+  return arrayPrepare
+}
+
+const ProjectsSection = async () => {
+  const data: Propstype[] = await prepareDataRepositories()
   return (
     <SectionContainer>
 
@@ -25,7 +63,7 @@ const ProjectsSection = () => {
 
         </AnimationContainer>
 
-        <SearchAllProjects />
+        <SearchAllProjects allProjectsInfo={data} />
 
       </div>
 
