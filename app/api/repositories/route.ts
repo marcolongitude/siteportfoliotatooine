@@ -6,6 +6,8 @@ export async function GET() {
         'https://api.github.com/user/repos?page=100&per_page=100',
         { headers: { Authorization: apikey } }
     )
+
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
     const data = await res.json();
 
     // console.log(data)

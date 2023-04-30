@@ -19,8 +19,9 @@ const getData = async (): Promise<any> => {
     // const response = await data
     // const { repositories } = response
 
-    const data = (await fetch('http://localhost:3000/api/repositories')).json()
-    const response = await data
+    const data = await fetch('http://localhost:3000/api/repositories')
+    if (!data.ok) throw new Error(`HTTP error! Status: ${data.status}`)
+    const response = await data.json()
     const { repositories } = response
 
 
