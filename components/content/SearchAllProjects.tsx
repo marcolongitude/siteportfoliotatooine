@@ -1,21 +1,21 @@
 import { use } from 'react';
 import CardProject from './CardProject';
 import AnimationContainer from '../utils/AnimationContainer';
+import { GET } from '../../app/api/repositories/route'
 // import { CardProjectProps } from '@/types';
 
 async function getData(): Promise<any> {
-    const apikey = "Bearer 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"
-    const res = (await fetch(
-        'https://api.github.com/user/repos?per_page=100',
-        { headers: { Authorization: apikey } }
-    )).json();
 
-    const response: any[] = await res
+    const data: any = (await GET()).json()
+
+    const response = await data
+
+    const { repositories } = response
 
     let arrayPrepared: Propstype[] = []
 
-    if (response.length > 0) {
-        response.forEach((repo: any, index: any) => {
+    if (typeof repositories === 'object' && repositories.length > 0) {
+        repositories.forEach((repo: any) => {
             if (repo && repo?.owner?.login == 'marcolongitude') {
                 arrayPrepared.push({
                     id: repo.id,
@@ -34,27 +34,6 @@ async function getData(): Promise<any> {
     return []
 }
 
-// const prepareDataRepositories = (repositories: any) => {
-//     if (repositories.length == 0 || !repositories) return []
-//     let arrayPrepare: Propstype[] = []
-//     repositories.forEach((repo: any, index: any) => {
-//         if (repo.owner.login == 'marcolongitude') {
-//             arrayPrepare.push(
-//                 {
-//                     id: index,
-//                     title: repo.name,
-//                     des: repo.description,
-//                     category: 'javascript',
-//                     repo: repo.git_url,
-//                     link: repo.url
-//                 }
-//             )
-//         }
-//     })
-
-//     return arrayPrepare
-// }
-
 type Propstype = {
     id: any;
     title: any;
@@ -68,6 +47,7 @@ type Propstype = {
 
 const SearchAllProjects = () => {
     const allProjectsInfo: Propstype[] = use(getData())
+
 
     // const [projectSearch, setProjectSearch] = useState<string>('');
     // const resultSearch: CardProjectProps[] = allProjectsInfo.filter(project => project.category.includes(projectSearch.toLowerCase()))
