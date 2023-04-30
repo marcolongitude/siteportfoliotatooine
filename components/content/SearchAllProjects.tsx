@@ -4,7 +4,17 @@ import AnimationContainer from '../utils/AnimationContainer';
 // import { GET } from '../../app/api/repositories/route'
 // import { CardProjectProps } from '@/types';
 
-async function getData(): Promise<any> {
+type Propstype = {
+    id: any;
+    title: any;
+    des: any;
+    category: any;
+    repo: any;
+    link: any;
+}
+
+const getData = async (): Promise<any> => {
+    let arrayPrepared: Propstype[] = []
     // const data: any = (await GET()).json()
     // const response = await data
     // const { repositories } = response
@@ -13,7 +23,6 @@ async function getData(): Promise<any> {
     const response = await data
     const { repositories } = response
 
-    let arrayPrepared: Propstype[] = []
 
     if (typeof repositories === 'object' && repositories.length > 0) {
         repositories.forEach((repo: any) => {
@@ -30,52 +39,12 @@ async function getData(): Promise<any> {
         });
     }
 
-    console.log(arrayPrepared)
-
     return arrayPrepared
 }
-
-type Propstype = {
-    id: any;
-    title: any;
-    des: any;
-    category: any;
-    repo: any;
-    link: any;
-}
-
 
 
 const SearchAllProjects = () => {
 
-    const getData = async (): Promise<any> => {
-        let arrayPrepared: Propstype[] = []
-        // const data: any = (await GET()).json()
-        // const response = await data
-        // const { repositories } = response
-
-        const data = (await fetch('http://localhost:3000/api/repositories')).json()
-        const response = await data
-        const { repositories } = response
-
-
-        if (typeof repositories === 'object' && repositories.length > 0) {
-            repositories.forEach((repo: any) => {
-                if (repo && repo?.owner?.login == 'marcolongitude') {
-                    arrayPrepared.push({
-                        id: repo.id,
-                        title: repo.name,
-                        des: repo.description,
-                        category: 'javascript',
-                        repo: repo.git_url,
-                        link: repo.url
-                    })
-                }
-            });
-        }
-
-        return arrayPrepared
-    }
 
     const allProjectsInfo: Propstype[] = use(getData())
     // const [projectSearch, setProjectSearch] = useState<string>('');
