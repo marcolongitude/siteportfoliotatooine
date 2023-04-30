@@ -14,7 +14,7 @@ async function getData(): Promise<any> {
 
     let arrayPrepared: Propstype[] = []
 
-    if (typeof response === 'object' && response.length > 0) {
+    if (response.length > 0) {
         response.forEach((repo: any, index: any) => {
             if (repo && repo?.owner?.login == 'marcolongitude') {
                 arrayPrepared.push({
