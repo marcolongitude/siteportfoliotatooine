@@ -1,18 +1,26 @@
-import { ReactElement, use, useState } from 'react';
+import { use } from 'react';
 import CardProject from './CardProject';
 import AnimationContainer from '../utils/AnimationContainer';
 // import { CardProjectProps } from '@/types';
 
-async function getData() {
+async function getData(): Promise<any> {
     const apikey = "Bearer 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"
     const res = await fetch('https://api.github.com/user/repos?per_page=100', { headers: { Authorization: apikey } });
-    return res.json();
+    const data = res.json();
+    const response = await data
+
+    if (response) {
+        let objPrepared = prepareDataRepositories(response)
+        return objPrepared
+    }
+
+    return []
+
 }
 
-const prepareDataRepositories = async () => {
-    const repositories = await getData();
+const prepareDataRepositories = (repositories: any) => {
     if (repositories.length == 0 || !repositories) return []
-    let arrayPrepare: any[] = []
+    let arrayPrepare: Propstype[] = []
     repositories.forEach((repo: any, index: any) => {
         if (repo.owner.login == 'marcolongitude') {
             arrayPrepare.push(
