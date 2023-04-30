@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import SearchAllProjects from '../content/SearchAllProjects';
 import { Text } from '../generics/text';
 import AnimationContainer from '../utils/AnimationContainer';
@@ -21,30 +22,32 @@ type Propstype = {
   link: any;
 }
 
-const prepareDataRepositories = async () => {
-  const repositories = await getData();
+const prepareDataRepositories = (repositories: any[]) => {
   if (repositories.length == 0 || !repositories) return []
   let arrayPrepare: Propstype[] = []
   repositories.forEach((repo: any, index: any) => {
-      if (repo.owner.login == 'marcolongitude') {
-          arrayPrepare.push(
-              {
-                  id: index,
-                  title: repo.name,
-                  des: repo.description,
-                  category: 'javascript',
-                  repo: repo.git_url,
-                  link: repo.url
-              }
-          )
-      }
+    if (repo.owner.login == 'marcolongitude') {
+      arrayPrepare.push(
+        {
+          id: index,
+          title: repo.name,
+          des: repo.description,
+          category: 'javascript',
+          repo: repo.git_url,
+          link: repo.url
+        }
+      )
+    }
   })
 
   return arrayPrepare
 }
 
-const ProjectsSection = async () => {
-  const data: Propstype[] = await prepareDataRepositories()
+const ProjectsSection = async (): Promise<any> => {
+  const datapromise = getData()
+  const repos = await datapromise
+  const data: Propstype[] = prepareDataRepositories(repos)
+
   return (
     <SectionContainer>
 
