@@ -51,7 +51,7 @@ type Propstype = {
 
 
 const SearchAllProjects = () => {
-    const allProjectsInfo = use(getData())
+    const allProjectsInfo: Propstype[] = use(getData())
 
     // const [projectSearch, setProjectSearch] = useState<string>('');
     // const resultSearch: CardProjectProps[] = allProjectsInfo.filter(project => project.category.includes(projectSearch.toLowerCase()))
