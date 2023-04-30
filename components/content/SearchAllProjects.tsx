@@ -4,17 +4,18 @@ import AnimationContainer from '../utils/AnimationContainer';
 // import { CardProjectProps } from '@/types';
 
 async function getData(): Promise<any> {
-    const apikey = "Bearer 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"
+    const apikey = "Bearer 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"
     const res = (await fetch(
         'https://api.github.com/user/repos?per_page=100',
         { headers: { Authorization: apikey } }
     )).json();
+
     const response: any[] = await res
 
     let arrayPrepared: Propstype[] = []
 
     if (typeof response === 'object' && response.length > 0) {
-        response.forEach((repo: any) => {
+        response.forEach((repo: any, index: any) => {
             if (repo && repo?.owner?.login == 'marcolongitude') {
                 arrayPrepared.push({
                     id: repo.id,
@@ -24,7 +25,6 @@ async function getData(): Promise<any> {
                     repo: repo.git_url,
                     link: repo.url
                 })
-
             }
         });
 
