@@ -1,7 +1,7 @@
 import { use, useCallback, useMemo } from 'react';
 import CardProject from './CardProject';
 import AnimationContainer from '../utils/AnimationContainer';
-// import { GET } from '../../app/api/repositories/route'
+import { GET } from '../../app/api/repositories/route'
 // import { CardProjectProps } from '@/types';
 
 type Propstype = {
@@ -15,15 +15,14 @@ type Propstype = {
 
 const getData = async (): Promise<any> => {
     let arrayPrepared: Propstype[] = []
-    // const data: any = (await GET()).json()
-    // const response = await data
-    // const { repositories } = response
-
-    const data = await fetch('https://marcoaureliodev.vercel.app/api/repositories')
-    if (!data.ok) throw new Error(`HTTP error! Status: ${data.status}`)
-    const response = await data.json()
+    const data: any = (await GET()).json()
+    const response = await data
     const { repositories } = response
 
+    // const data = await fetch('https://marcoaureliodev.vercel.app/api/repositories')
+    // if (!data.ok) throw new Error(`HTTP error! Status: ${data.status}`)
+    // const response = await data.json()
+    // const { repositories } = response
 
     if (typeof repositories === 'object' && repositories.length > 0) {
         repositories.forEach((repo: any) => {
