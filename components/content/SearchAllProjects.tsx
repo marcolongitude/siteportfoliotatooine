@@ -9,9 +9,8 @@ async function getData() {
     return res.json();
 }
 
-const dataPromise = getData();
-
-const prepareDataRepositories = (repositories: any) => {
+const prepareDataRepositories = async () => {
+    const repositories = await getData();
     if (repositories.length == 0 || !repositories) return []
     let arrayPrepare: any[] = []
     repositories.forEach((repo: any, index: any) => {
@@ -34,9 +33,8 @@ const prepareDataRepositories = (repositories: any) => {
 
 
 
-const SearchAllProjects = () => {
-    const repositories = use(dataPromise);
-    const allProjectsInfo = prepareDataRepositories(repositories)
+const SearchAllProjects = async () => {
+    const allProjectsInfo = await prepareDataRepositories()
     // const [projectSearch, setProjectSearch] = useState<string>('');
     // const resultSearch: CardProjectProps[] = allProjectsInfo.filter(project => project.category.includes(projectSearch.toLowerCase()))
 
