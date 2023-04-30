@@ -10,34 +10,51 @@ async function getData(): Promise<any> {
     const response = await data
 
     if (response) {
-        let objPrepared = prepareDataRepositories(response)
-        return objPrepared
+        let arrayPrepare: Propstype[] = []
+        response.forEach((repo: any, index: any) => {
+            if (repo.owner.login == 'marcolongitude') {
+                arrayPrepare.push(
+                    {
+                        id: index,
+                        title: repo.name,
+                        des: repo.description,
+                        category: 'javascript',
+                        repo: repo.git_url,
+                        link: repo.url
+                    }
+                )
+            }
+        });
+
+
+        // let objPrepared = prepareDataRepositories(response)
+        return arrayPrepare
     }
 
     return []
 
 }
 
-const prepareDataRepositories = (repositories: any) => {
-    if (repositories.length == 0 || !repositories) return []
-    let arrayPrepare: Propstype[] = []
-    repositories.forEach((repo: any, index: any) => {
-        if (repo.owner.login == 'marcolongitude') {
-            arrayPrepare.push(
-                {
-                    id: index,
-                    title: repo.name,
-                    des: repo.description,
-                    category: 'javascript',
-                    repo: repo.git_url,
-                    link: repo.url
-                }
-            )
-        }
-    })
+// const prepareDataRepositories = (repositories: any) => {
+//     if (repositories.length == 0 || !repositories) return []
+//     let arrayPrepare: Propstype[] = []
+//     repositories.forEach((repo: any, index: any) => {
+//         if (repo.owner.login == 'marcolongitude') {
+//             arrayPrepare.push(
+//                 {
+//                     id: index,
+//                     title: repo.name,
+//                     des: repo.description,
+//                     category: 'javascript',
+//                     repo: repo.git_url,
+//                     link: repo.url
+//                 }
+//             )
+//         }
+//     })
 
-    return arrayPrepare
-}
+//     return arrayPrepare
+// }
 
 type Propstype = {
     id: any;
