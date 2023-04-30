@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-    const apikey = "Bearer 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"
+    const apikey = "Bearer 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"
     const res = await fetch(
         'https://api.github.com/user/repos?page=1&per_page=100',
         { headers: { Authorization: apikey } }
