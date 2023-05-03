@@ -5,11 +5,8 @@ import { TimelineEventProps } from '@/types';
 export const Timeline = ({ children }: { children: React.ReactNode }) => {
   return (
     <AnimationContainer customClassName='w-full mb-16'>
-
       <h2 className='font-bold text-2xl tracking-tight mb-8 text-white text-center lg:text-start'>Experiências</h2>
-
       {children}
-
     </AnimationContainer>
   )
 }
@@ -27,8 +24,8 @@ export const TimelineEvent = ({ active, children, last }: TimelineEventProps) =>
           className={classNames(
             'absolute top-[-2px] left-[-8.5px] w-4 h-4 rounded-full aspect-square outline-black',
             {
-              'bg-orange-700': active,
-              'bg-neutral-800': !active,
+              'bg-blue-700': active,
+              'bg-blue-300': !active,
               'w-3 h-3': !active,
               'left-[-5.5px]': !active,
             }
@@ -37,7 +34,7 @@ export const TimelineEvent = ({ active, children, last }: TimelineEventProps) =>
           {active && (
             <div
               className={classNames(
-                'absolute top-0 left-0 rounded-full -z-10 w-4 h-4 bg-orange-700 animate-ping aspect-square'
+                'absolute top-0 left-0 rounded-full -z-10 w-4 h-4 bg-blue-700 animate-ping aspect-square'
               )}
             />
           )}

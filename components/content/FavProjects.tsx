@@ -149,9 +149,9 @@ const FavProjects = () => {
         Projetos
       </h2>
 
-      <div className='flex gap-2'>
-        <TextGenerics phrase='Atualmente meus estudos estão listados no meu' />
-        <a href={myGithub} target='_blank' rel='noopener noreferrer' className='text-zinc-300 hover:text-white hover:underline transition-all ease'>GitHub</a>.
+      <div className='flex flex-row gap-2'>
+        {/* <TextGenerics phrase='Atualmente meus estudos estão listados no meu' /> */}
+        <a href={myGithub} target='_blank' rel='noopener noreferrer' className='text-zinc-300 hover:text-white hover:underline transition-all ease'>Atualmente meus estudos estão listados no meu GitHub</a>.
       </div>
 
       {/* <Carousel
