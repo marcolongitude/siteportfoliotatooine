@@ -2,12 +2,15 @@ import { use } from 'react';
 import CardProject from './CardProject';
 
 type Propstype = {
-    id: string;
-    title: string;
-    des: string;
-    category: string;
-    repo: string;
-    link: string;
+    id: string
+    name: string
+    description: string
+    category: string
+    svn_url: string
+    owner: {
+        login?: string
+        html_url: string
+    }
 }
 
 const getData = async (): Promise<any> => {
@@ -18,15 +21,15 @@ const getData = async (): Promise<any> => {
     const repositories = await data.json()
 
     if (typeof repositories === 'object' && repositories.length > 0) {
-        repositories.forEach((repo: any) => {
+        repositories.forEach((repo: Propstype) => {
             if (repo && repo?.owner?.login == 'marcolongitude') {
                 arrayPrepared.push({
                     id: repo.id,
-                    title: repo.name,
-                    des: repo.description,
+                    name: repo.name,
+                    description: repo.description,
                     category: 'javascript',
-                    repo: repo.svn_url,
-                    link: repo.owner.html_url
+                    svn_url: repo.svn_url,
+                    owner: { html_url: repo.owner.html_url }
                 })
             }
         });
@@ -43,8 +46,8 @@ const SearchAllProjects = () => {
         <>
             <article className='w-full flex justify-center items-center content-center flex-wrap gap-6 mx-auto'>
                 {
-                    allProjectsInfo && allProjectsInfo.map(({ id, title, des, category, repo, link }) =>
-                        <CardProject key={id} title={title} des={des} category={category} repo={repo} link={link} />)
+                    allProjectsInfo && allProjectsInfo.map(({ id, name, description, category, svn_url, owner }) =>
+                        <CardProject key={id} title={name} des={description} category={category} repo={svn_url} link={owner.html_url} />)
                 }
             </article>
         </>
