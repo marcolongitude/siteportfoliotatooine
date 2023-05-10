@@ -37,3 +37,11 @@ export interface CardProjectProps {
   repo: string;
   link: string;
 }
+
+export interface DataPostsTabNews {
+  id?: string;
+  title: string;
+  source_url: string;
+  slug?: string;
+  created_at: string;
+}

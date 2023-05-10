@@ -1,16 +1,42 @@
+import CardPostsBlog from "@/components/content/CardPostsBlog";
 import SectionContainer from "@/components/utils/SectionContainer";
-import TitleSectionPageContainer from "@/components/utils/TitleSectionPageContainer";
+import { use } from "react";
+import { DataPostsTabNews } from '../../../types/index';
 
-const Blog = () => (
-  <SectionContainer>
+const baseUrl: string = "https://www.tabnews.com.br/marcocpdti/"
 
-    <div className='w-full flex flex-col items-center gap-6' style={{ height: '100vh' }}>
+const getData = async (): Promise<Array<DataPostsTabNews>> => {
+    const data = await fetch('https://www.tabnews.com.br/api/v1/contents/marcocpdti')
+    if (!data.ok) throw new Error(`HTTP error! Status: ${data.status}`)
+    const posts = await data.json()
 
-      <TitleSectionPageContainer title='Em produção...' />
+    const response = posts.map((post: DataPostsTabNews) => {
+        return {
+            id: post.id,
+            title: post.title,
+            source_url: baseUrl + post.slug,
+            created_at: post.created_at,
+        }
+    });
 
-    </div>
+    return response
+}
 
-  </SectionContainer>
-);
+const Blog = () => {
+    const allPosts: Array<DataPostsTabNews> = use(getData())
+    return (
+        <SectionContainer>
+            <div className='w-full flex flex-col items-center gap-6' style={{ height: '100vh' }}>
+
+                {allPosts && allPosts.map(({ id, title, source_url, created_at }) => (
+                    <div className='w-full' key={id}>
+                        <CardPostsBlog title={title} created_at={created_at} source_url={source_url} />
+                    </div>
+                ))}
+
+            </div>
+        </SectionContainer>
+    )
+};
 
 export default Blog;
