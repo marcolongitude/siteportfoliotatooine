@@ -2,12 +2,12 @@ import { use } from 'react';
 import CardProject from './CardProject';
 
 type Propstype = {
-    id: any;
-    title: any;
-    des: any;
-    category: any;
-    repo: any;
-    link: any;
+    id: string;
+    title: string;
+    des: string;
+    category: string;
+    repo: string;
+    link: string;
 }
 
 const getData = async (): Promise<any> => {
@@ -25,8 +25,8 @@ const getData = async (): Promise<any> => {
                     title: repo.name,
                     des: repo.description,
                     category: 'javascript',
-                    repo: repo.git_url,
-                    link: repo.url
+                    repo: repo.svn_url,
+                    link: repo.owner.html_url
                 })
             }
         });
@@ -43,7 +43,8 @@ const SearchAllProjects = () => {
         <>
             <article className='w-full flex justify-center items-center content-center flex-wrap gap-6 mx-auto'>
                 {
-                    allProjectsInfo && allProjectsInfo.map(({ id, title, des, category, repo, link }) => <CardProject key={id} title={title} des={des} category={category} repo={repo} link={link} />)
+                    allProjectsInfo && allProjectsInfo.map(({ id, title, des, category, repo, link }) =>
+                        <CardProject key={id} title={title} des={des} category={category} repo={repo} link={link} />)
                 }
             </article>
         </>
