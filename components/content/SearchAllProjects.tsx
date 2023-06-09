@@ -5,7 +5,7 @@ type Propstype = {
     id: string
     name: string
     description: string
-    category: string
+    language: string
     svn_url: string
     owner: {
         login?: string
@@ -27,7 +27,7 @@ const getData = async (): Promise<any> => {
                     id: repo.id,
                     name: repo.name,
                     description: repo.description,
-                    category: 'javascript',
+                    language: repo.language,
                     svn_url: repo.svn_url,
                     owner: { html_url: repo.owner.html_url }
                 })
@@ -46,8 +46,8 @@ const SearchAllProjects = () => {
         <>
             <article className='w-full flex justify-center items-center content-center flex-wrap gap-6 mx-auto'>
                 {
-                    allProjectsInfo && allProjectsInfo.map(({ id, name, description, category, svn_url, owner }) =>
-                        <CardProject key={id} title={name} des={description} category={category} repo={svn_url} link={owner.html_url} />)
+                    allProjectsInfo && allProjectsInfo.map(({ id, name, description, language, svn_url, owner }) =>
+                        <CardProject key={id} title={name} des={description} category={language} repo={svn_url} link={owner.html_url} />)
                 }
             </article>
         </>
