@@ -56,8 +56,7 @@ const CrossIcon = (props: JSX.IntrinsicElements['svg']) => {
 };
 
 const MobileMenuNav = () => {
-  const { isMenuOpen, toggleMenu } =
-    useMenuNav();
+  const { isMenuOpen, toggleMenu } = useMenuNav();
 
   return (
     <>
@@ -75,7 +74,7 @@ const MobileMenuNav = () => {
           className={cn(
             styles.menu,
             'flex flex-col items-start justify-center absolute right-0 backdrop-blur-sm bg-black/20 text-end p-5 rounded-br-2xl mr-5',
-            isMenuRendered && styles.menuRendered
+            isMenuOpen && styles.menuRendered
           )}
         >
           <LinksMenuNav />
