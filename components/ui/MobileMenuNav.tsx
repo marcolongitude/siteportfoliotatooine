@@ -56,7 +56,7 @@ const CrossIcon = (props: JSX.IntrinsicElements['svg']) => {
 };
 
 const MobileMenuNav = () => {
-  const { isMenuOpen, toggleMenu, isMenuMounted, isMenuRendered } =
+  const { isMenuOpen, toggleMenu } =
     useMenuNav();
 
   return (
@@ -70,7 +70,7 @@ const MobileMenuNav = () => {
         <MenuIcon data-hide={isMenuOpen} />
         <CrossIcon data-hide={!isMenuOpen} />
       </button>
-      {isMenuMounted && (
+      {isMenuOpen && (
         <ul
           className={cn(
             styles.menu,
