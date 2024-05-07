@@ -27,7 +27,9 @@ const getData = async (): Promise<any> => {
       next: { tags: ['repositories-github'] }
     }
   );
+
   if (!data.ok) throw new Error(`HTTP error! Status: ${data.status}`);
+
   const repositories = await data.json();
 
   if (typeof repositories === 'object' && repositories.length > 0) {

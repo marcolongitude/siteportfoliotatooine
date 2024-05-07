@@ -16,11 +16,26 @@ const skills = [
   },
   {
     title: 'Bibliotecas de JavaScript',
-    techs: ['Redux', 'Redux-toolkit', 'react-router-dom', 'Formik', 'Jest', 'React-hook-form']
+    techs: [
+      'Redux',
+      'Redux-toolkit',
+      'react-router-dom',
+      'Formik',
+      'Jest',
+      'React-hook-form'
+    ]
   },
   {
-    title: 'Pre-processadoes, css style, componentes',
-    techs: ['Scss', 'Sass', 'Less', 'Bootstrap', 'Tailwind', 'ChakraUI', 'MaterialUI']
+    title: 'Pre-processadores, css style, componentes',
+    techs: [
+      'Scss',
+      'Sass',
+      'Less',
+      'Bootstrap',
+      'Tailwind',
+      'ChakraUI',
+      'MaterialUI'
+    ]
   },
   {
     title: 'Backend stack',
@@ -28,78 +43,81 @@ const skills = [
   },
   {
     title: 'Softwares e ferramentas',
-    techs: ['VS Code', 'Jira', 'ClickUP', 'Trello', 'Git', 'GitHub', 'ESLint', 'Husky', 'Figma']
+    techs: [
+      'VS Code',
+      'Jira',
+      'ClickUP',
+      'Trello',
+      'Git',
+      'GitHub',
+      'ESLint',
+      'Husky',
+      'Figma'
+    ]
   },
   {
     title: 'Metodologias ágeis e princípios de codificação',
-    techs: ['SCRUM', 'Kanban', 'Clean Code', 'SOLID principles', 'Clean Architecture']
+    techs: [
+      'SCRUM',
+      'Kanban',
+      'Clean Code',
+      'SOLID principles',
+      'Clean Architecture'
+    ]
   }
 ];
 
-const phraseAboutMe = "Trabalho com tecnologia desde os 16 anos e sempre motivado a aprender novas stacks pelo grande amor ao desenvolvimento."
-const phraseSkillAndTools = "Uma lista de todas as tecnologias que já trabalhei e me empenho em conhecer melhor:"
-const phraseInterest = "Tenho interesse em aprender tecnoligias cloud nas áreas de deploys C.I. e C.D., gerencimento de containeres etc."
+const phraseAboutMe =
+  'Trabalho com tecnologia desde os 16 anos e sempre motivado a aprender novas stacks pelo grande amor ao desenvolvimento.';
+const phraseSkillAndTools =
+  'Uma lista de todas as tecnologias que já trabalhei e me empenho em conhecer melhor:';
+const phraseInterest =
+  'Tenho interesse em aprender tecnoligias cloud nas áreas de deploys C.I. e C.D., gerencimento de containeres etc.';
 
 const AboutSection = () => {
   return (
     <SectionContainer>
+      <div className="w-full flex flex-col gap-6">
+        <TitleSectionPageContainer title="Sobre" />
 
-      <div className='w-full flex flex-col gap-6'>
-
-        <TitleSectionPageContainer title='Sobre' />
-
-        <AnimationContainer customClassName='w-full flex flex-col gap-5 mb-8'>
-
-          <Text
-            phrase={phraseAboutMe}
-          />
-
+        <AnimationContainer customClassName="w-full flex flex-col gap-5 mb-8">
+          <Text phrase={phraseAboutMe} />
         </AnimationContainer>
 
         <CurrentTimeLineExp />
 
-        <AnimationContainer customClassName='w-full flex flex-col gap-5 mb-8'>
+        <AnimationContainer customClassName="w-full flex flex-col gap-5 mb-8">
+          <h2 className="font-bold text-2xl md:text-2xl tracking-tight mb-2 text-white text-start">
+            Skills e Ferramentas
+          </h2>
 
-          <h2 className='font-bold text-2xl md:text-2xl tracking-tight mb-2 text-white text-start'>Skills e Ferramentas</h2>
+          <Text phrase={phraseSkillAndTools} />
 
-          <Text
-            phrase={phraseSkillAndTools}
-          />
+          <div className="flex flex-col items-start gap-3 mt-3">
+            {skills.map(({ title, techs }) => (
+              <div key={title}>
+                <h3 className="font-bold text-1xl md:text-1xl tracking-tight mb-5 text-white text-start">
+                  {title}
+                </h3>
 
-          <div className='flex flex-col items-start gap-3 mt-3'>
-
-            {
-              skills.map(({ title, techs }) => (
-                <div key={title}>
-
-                  <h3 className='font-bold text-1xl md:text-1xl tracking-tight mb-5 text-white text-start'>{title}</h3>
-
-                  <AnimationContainer customClassName='flex items-center flex-wrap gap-3 mb-5'>
-                    <ShowSkills skills={techs} />
-                  </AnimationContainer>
-
-                </div>
-              ))
-            }
-
+                <AnimationContainer customClassName="flex items-center flex-wrap gap-3 mb-5">
+                  <ShowSkills skills={techs} />
+                </AnimationContainer>
+              </div>
+            ))}
           </div>
-
         </AnimationContainer>
 
-        <AnimationContainer customClassName='w-full flex flex-col gap-5'>
+        <AnimationContainer customClassName="w-full flex flex-col gap-5">
+          <h2 className="font-bold text-2xl md:text-2xl tracking-tight mb-2 text-white text-start">
+            Interesses
+          </h2>
 
-          <h2 className='font-bold text-2xl md:text-2xl tracking-tight mb-2 text-white text-start'>Interesses</h2>
-
-          <Text
-            phrase={phraseInterest}
-          />
-
+          <Text phrase={phraseInterest} />
         </AnimationContainer>
-
       </div>
-
     </SectionContainer>
-  )
-}
+  );
+};
 
 export default AboutSection;
