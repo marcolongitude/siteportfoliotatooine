@@ -1,44 +1,49 @@
 {
-  "name": "my-portfolio",
+  "name": "siteportfoliotatooine",
   "version": "1.0.0",
   "private": true,
-  "description": "Hi! My name is Jean Rondón I'm from Venezuela and I have +2 year of work experience in JavaScript/TypeScript and React, I'm a lover of page design or other things and whenever I can I try to learn new technologies since I discovered programming at 16. I love what I do and I help others with what I can, I also use in web, mobile and desktop development Next.js, Angular, Ionic and Electron implementing good practices, clean architecture, pixel perfect and agile methodologies.",
-  "author": "Jean Rondón <jeanrdev@gmail.com>",
-  "repository": "https://github.com/jeandv/my-next-portfolio",
+  "description": "Portfólio de Marco Aurélio — frontend developer.",
+  "author": "Marco Aurélio <marcocpdti@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcolongitude/siteportfoliotatooine.git"
+  },
   "license": "MIT",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "@portabletext/react": "^3.0.18",
-    "@tailwindcss/line-clamp": "^0.4.4",
-    "@tailwindcss/typography": "^0.5.13",
-    "@types/node": "20.12.10",
-    "@types/react": "18.3.1",
-    "@types/react-dom": "18.3.0",
-    "classnames": "^2.5.1",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "embla-carousel-react": "^8.0.4",
-    "framer-motion": "^11.1.9",
-    "next": "^14.2.3",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "sharp": "^0.33.3",
-    "styled-components": "^6.1.9",
-    "tailwindcss": "^3.4.3",
-    "typescript": "5.4.5"
+    "lucide-react": "^1.34.0",
+    "next": "^16.3.2",
+    "next-themes": "^0.4.6",
+    "radix-ui": "^1.6.7",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "shadcn": "^4.19.0",
+    "sharp": "^0.35.3",
+    "tailwind-merge": "^3.6.0",
+    "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^6.0.0",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8.0.0",
-    "eslint-config-next": "^14.2.3",
-    "postcss": "^8.4.38",
-    "postcss-preset-env": "^9.5.11",
-    "prettier": "^3.2.5"
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.2",
+    "postcss": "^8.5.26",
+    "prettier": "^3.9.6",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
   },
   "prettier": {
     "arrowParens": "always",
