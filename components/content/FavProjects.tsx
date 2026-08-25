@@ -1,13 +1,5 @@
 import AnimationContainer from '../utils/AnimationContainer';
 
-interface CardProps {
-  image: string;
-  title: string;
-  category: string;
-  repo: string;
-  link: string;
-}
-
 const myGithub = 'https://github.com/marcolongitude?tab=repositories';
 
 const FavProjects = () => {

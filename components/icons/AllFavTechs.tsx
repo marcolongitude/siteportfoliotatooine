@@ -1,8 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import IconCsharp from '../../public/iconc.svg'
-import Image from 'next/image'
 
 const animation = {
   hide: { x: -8, opacity: 0 },

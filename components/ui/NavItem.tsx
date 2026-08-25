@@ -5,9 +5,7 @@ import { motion } from 'framer-motion';
 import LinksNav, { navItemsSelected } from './LinksNav';
 
 const NavItem = () => {
-  let pathname = usePathname() as string;
-
-  console.log(pathname);
+  const pathname = usePathname() as string;
 
   return (
     <>

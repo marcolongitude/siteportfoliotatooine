@@ -1,4 +1,9 @@
+import type { Metadata } from 'next';
 import CardPostsBlog from '@/components/content/CardPostsBlog';
+
+export const metadata: Metadata = {
+  title: 'Blog'
+};
 import SectionContainer from '@/components/utils/SectionContainer';
 import { use } from 'react';
 import { DataPostsTabNews } from '../../../types/index';

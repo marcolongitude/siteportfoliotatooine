@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import SearchAllProjects from '../content/SearchAllProjects';
 import { Text } from '../generics/text';
 import AnimationContainer from '../utils/AnimationContainer';

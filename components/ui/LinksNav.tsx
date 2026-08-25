@@ -32,7 +32,7 @@ export const navItemsSelected: { [key: string]: NavItemHeaderAnimation } = {
 
 const LinksNav = () => {
 
-  let pathname = usePathname() as string;
+  const pathname = usePathname() as string;
   return (
     <>
       {

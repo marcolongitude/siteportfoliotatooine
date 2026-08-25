@@ -1,15 +1,27 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-    // const apikey = "Bearer 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"
-    const res = await fetch(
-        'https://api.github.com/users/marcolongitude/repos?page1&per_page=100',
-    )
+  const res = await fetch(
+    'https://api.github.com/users/marcolongitude/repos?per_page=100',
+    {
+      headers: {
+        Accept: 'application/vnd.github+json',
+        ...(process.env.GITHUB_TOKEN
+          ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }
+          : {})
+      },
+      next: { revalidate: 3600 }
+    }
+  );
 
-    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-    const data = await res.json();
+  if (!res.ok) {
+    return NextResponse.json(
+      { error: 'Falha ao buscar repositórios' },
+      { status: res.status }
+    );
+  }
 
-    // console.log(data)
+  const data = await res.json();
 
-    return NextResponse.json({ repositories: data })
+  return NextResponse.json({ repositories: data });
 }

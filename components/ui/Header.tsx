@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import HeaderAnimation from '../utils/HeaderAnimation';
 import MobileMenuNav from './MobileMenuNav';
 import NavItem from './NavItem';
 
@@ -18,7 +17,6 @@ const Header = () => {
           px-5 
           py-8 
           sm:pb-8 
-          bg-opacity-60 
           text-gray-100 
           gap-5 
           lg:gap-0"

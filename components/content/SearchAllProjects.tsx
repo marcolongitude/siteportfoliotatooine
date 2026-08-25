@@ -13,8 +13,8 @@ type Propstype = {
   };
 };
 
-const getData = async (): Promise<any> => {
-  let arrayPrepared: Propstype[] = [];
+const getData = async (): Promise<Propstype[]> => {
+  const arrayPrepared: Propstype[] = [];
 
   const data = await fetch(
     'https://api.github.com/users/marcolongitude/repos?page1&per_page=100',

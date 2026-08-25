@@ -1,13 +1,15 @@
+import type { ReactNode } from 'react';
+
 export interface TimelineEventProps {
   active?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
   last?: boolean;
 }
 
 export interface ExternalLinkProps {
   href: string;
   customClassName?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export interface NavItemHeaderAnimation {
@@ -23,7 +25,7 @@ export interface NavItemProps {
 }
 
 export interface AnimationContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   customClassName?: string;
   customDelay?: number;
 }
