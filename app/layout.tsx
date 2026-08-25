@@ -1,7 +1,8 @@
 import { Geist } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
-import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
+import { Header } from '@/widgets/header';
+import { Footer } from '@/widgets/footer';
+import { site } from '@/shared/config/site';
 import { cn } from '@/lib/utils';
 import '../styles/globals.css';
 
@@ -10,18 +11,15 @@ const geist = Geist({
   variable: '--font-sans'
 });
 
-const siteUrl = 'https://marcoaureliodev.vercel.app';
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(site.url),
   title: {
-    default: 'Marco Aurélio',
-    template: 'Marco Aurélio · %s'
+    default: site.name,
+    template: `${site.name} · %s`
   },
-  description:
-    'Olá! Meu nome é Marco Aurélio, moro no Brasil e trabalho com JavaScript, TypeScript, React e C# .NET.',
+  description: `${site.tagline} Trabalho com JavaScript, TypeScript, React e C# .NET.`,
   keywords: [
-    'Marco Aurélio',
+    site.name,
     'frontend',
     'portfólio',
     'React',
@@ -29,19 +27,18 @@ export const metadata: Metadata = {
     'Next.js',
     'C#'
   ],
-  authors: [{ name: 'Marco Aurélio', url: siteUrl }],
-  creator: 'Marco Aurélio',
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
   alternates: {
     canonical: '/'
   },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: siteUrl,
-    siteName: 'Marco Aurélio',
-    title: 'Marco Aurélio',
-    description:
-      'Olá! Meu nome é Marco Aurélio, moro no Brasil e trabalho com JavaScript, TypeScript, React e C# .NET.',
+    url: site.url,
+    siteName: site.name,
+    title: site.name,
+    description: site.tagline,
     images: [{ url: '/banner-portfolio.jpg' }]
   }
 };
@@ -54,9 +51,9 @@ export const viewport: Viewport = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="pt-BR" className={cn('dark font-sans', geist.variable)}>
-      <body className="bg-background text-foreground antialiased min-h-screen">
+      <body className="flex min-h-screen flex-col bg-background text-foreground antialiased">
         <Header />
-        <main className="min-w-xs flex flex-col justify-center items-center mx-auto">
+        <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12 md:py-16">
           {children}
         </main>
         <Footer />

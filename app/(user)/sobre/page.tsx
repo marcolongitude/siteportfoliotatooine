@@ -1,10 +1,10 @@
-import AboutSection from '@/components/sections/AboutSection';
 import type { Metadata } from 'next';
+import { AboutPage } from '@/pages/about';
 
 export const metadata: Metadata = {
   title: 'Sobre'
 };
 
-const Sobre = () => <AboutSection />;
-
-export default Sobre;
+export default function Page() {
+  return <AboutPage />;
+}

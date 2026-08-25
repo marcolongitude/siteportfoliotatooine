@@ -1,23 +1,17 @@
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const NotFound = () => {
   return (
-    <div className="grid h-screen px-4 bg-gray-900 place-content-center">
-      <div className="text-center">
-        <h1 className="text-white tracking-tight text-9xl">404</h1>
-        <p className="text-2xl font-bold tracking-tight text-gray-400 sm:text-4xl mt-3">
-          Página não encontrada
-        </p>
-        <p className="mt-4 text-gray-400">
-          Não foi possível encontrar essa página.
-        </p>
-        <Link
-          href="/"
-          className="inline-block px-5 py-3 mt-6 text-sm font-medium text-white bg-gray-800 rounded hover:bg-black outline-none transition-all ease"
-        >
-          Voltar para o início
-        </Link>
-      </div>
+    <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
+      <p className="text-6xl font-semibold tracking-tight">404</p>
+      <h1 className="mt-4 text-2xl font-semibold">Página não encontrada</h1>
+      <p className="mt-2 text-muted-foreground">
+        Esse endereço não existe neste portfólio.
+      </p>
+      <Button asChild className="mt-6">
+        <Link href="/">Voltar para o início</Link>
+      </Button>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import HomeSection from '@/components/sections/HomeSection';
+import { HomePage } from '@/pages/home';
 
-const HomePage = () => <HomeSection />;
-
-export default HomePage;
+export default function Page() {
+  return <HomePage />;
+}

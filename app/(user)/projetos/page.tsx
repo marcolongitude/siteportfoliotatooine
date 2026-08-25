@@ -1,10 +1,10 @@
-import ProjectsSection from '@/components/sections/ProjectsSection';
 import type { Metadata } from 'next';
+import { ProjectsPage } from '@/pages/projects';
 
 export const metadata: Metadata = {
   title: 'Projetos'
 };
 
-const Projects = () => <ProjectsSection />;
-
-export default Projects;
+export default function Page() {
+  return <ProjectsPage />;
+}
