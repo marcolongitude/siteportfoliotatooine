@@ -17,7 +17,7 @@ type PostCardProps = {
 
 export function PostCard({ post }: PostCardProps) {
   return (
-    <Card>
+    <Card className="transition-colors hover:border-brand-lilac/40">
       <CardHeader>
         <Badge variant="outline" className="w-fit">
           {formatDatePt(post.createdAt)}

@@ -15,6 +15,7 @@ Repositório: [marcolongitude/siteportfoliotatooine](https://github.com/marcolon
 | TypeScript | 5.9.3 |
 | Tailwind CSS | 4.3.3 |
 | shadcn/ui | 4.19 (preset Nova, Radix) |
+| next-themes | tema claro / escuro / sistema |
 | ESLint | 9.39.x (eslint-config-next 16 ainda não fecha com ESLint 10) |
 | Node | >= 20.9 |
 
@@ -32,15 +33,21 @@ src/
   shared/
     api/                     # TabNews
     config/site.ts
+    config/theme.ts            # next-themes (claro / escuro / sistema)
+    config/palette.ts          # classes de acento que leem os tokens
     lib/format-date.ts
-    ui/                      # PageHeader, FeedbackState
-components/ui/               # shadcn (Button, Card, Badge, Separator)
+    ui/                      # PageHeader, ThemeProvider, ThemeToggle
+components/ui/               # shadcn (Button, Card, Badge, Separator, DropdownMenu)
 ```
 
 ## Fontes de dados
 
 - **Projetos** — catálogo curado dos MVPs publicados no cluster Rancher/K3s (não a lista de repositórios do GitHub). Hoje: PointBook (site + app + API) e ChatUp (API em staging). Grafana, Rancher e demais peças de infra ficam de fora.
 - **TabNews** — posts em `https://www.tabnews.com.br/api/v1/contents/marcocpdti`. Comentários (`parent_id`) são filtrados.
+
+## Visual
+
+Cores, raio e largura da página vivem em `styles/globals.css` (`:root` claro, `.dark` escuro). Não há hex espalhado nos componentes: usam `bg-primary`, `text-brand-rose`, etc. O seletor no header grava a preferência (claro, escuro ou sistema) via `next-themes`.
 
 ## Scripts
 
@@ -60,10 +67,11 @@ Trabalho na branch `feat/modernize-portfolio`, com atuação da IA Grok (Cursor)
 
 1. **Higienização** — identidade do Jean Rondón removida; Pages Router morto; tokens de GitHub apagados do código (revogue PATs antigos no GitHub).
 2. **Upgrade** — Next 14 → 16, React 18 → 19, Tailwind 3 → 4, TypeScript 5.9. Fonte Geist, Metadata API, `eslint .`.
-3. **shadcn/ui** — preset Nova + Radix, tema dark. Button, Card, Badge, Separator.
+3. **shadcn/ui** — preset Nova + Radix. Button, Card, Badge, Separator, DropdownMenu.
 4. **Estrutura** — `shared/api` para TabNews; widgets de header/footer/timeline; páginas compostas em `src/pages`.
 5. **UI** — header sticky, hero com CTAs, stacks em badges, cards de projeto e posts, timeline, estados de loading/erro/vazio.
 6. **Projetos** — vitrine de MVPs no ar (PointBook em destaque e ChatUp em staging), a partir dos workloads ativos no Rancher. Lista do GitHub saiu da página e da API.
+7. **Visual** — paleta pastel (rosa, lilás, menta, damasco) com temas claro e escuro; tokens centralizados; atmosfera de fundo; seletor de tema.
 
 ## Decisões de stack (resumo)
 

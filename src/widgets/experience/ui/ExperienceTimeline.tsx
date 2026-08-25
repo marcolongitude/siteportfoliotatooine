@@ -10,13 +10,16 @@ export function ExperienceTimeline({
 }: ExperienceTimelineProps) {
   return (
     <section className="w-full">
-      <h2 className="mb-6 text-xl font-semibold tracking-tight">{heading}</h2>
-      <ol className="relative space-y-6 border-l border-border pl-6">
+      <h2 className="mb-6 flex items-center gap-2 text-xl font-semibold tracking-tight">
+        <span className="size-2 rounded-full bg-primary" aria-hidden />
+        {heading}
+      </h2>
+      <ol className="relative space-y-6 border-l border-brand-lilac/40 pl-6">
         {experiences.map((item) => (
           <li key={`${item.company}-${item.period}`} className="relative">
             <span
               className={`absolute top-1.5 -left-[31px] size-3 rounded-full ring-4 ring-background ${
-                item.current ? 'bg-primary' : 'bg-muted-foreground/50'
+                item.current ? 'bg-primary' : 'bg-brand-lilac'
               }`}
             />
             <p className="text-xs text-muted-foreground">{item.period}</p>

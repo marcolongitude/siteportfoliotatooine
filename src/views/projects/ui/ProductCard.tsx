@@ -23,7 +23,12 @@ type ProductCardProps = {
 
 export function ProductCard({ product, featured = false }: ProductCardProps) {
   return (
-    <Card className={cn('h-full', featured && 'border-primary/40')}>
+    <Card
+      className={cn(
+        'h-full transition-colors hover:border-primary/30',
+        featured && 'border-primary/40 bg-primary/5'
+      )}
+    >
       <CardHeader>
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant={product.status === 'mvp' ? 'default' : 'secondary'}>
