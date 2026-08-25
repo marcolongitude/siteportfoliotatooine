@@ -1,6 +1,8 @@
 import { PageHeader } from '@/shared/ui/PageHeader';
+import { revealDelay } from '@/shared/config/motion';
 import { products } from '../model/products';
 import { ProductCard } from './ProductCard';
+import { cn } from '@/lib/utils';
 
 export function ProjectsPage() {
   const featured = products.filter((product) => product.featured);
@@ -14,23 +16,30 @@ export function ProjectsPage() {
       />
 
       <div className="grid gap-4">
-        {featured.map((product) => (
-          <ProductCard key={product.id} product={product} featured />
+        {featured.map((product, index) => (
+          <div key={product.id} className={cn('reveal', revealDelay(index + 1))}>
+            <ProductCard product={product} featured />
+          </div>
         ))}
       </div>
 
       {others.length > 0 ? (
-        <section className="space-y-4">
+        <section className="reveal delay-300 space-y-4">
           <div className="space-y-1">
-            <h2 className="text-xl font-semibold tracking-tight">Também no ar</h2>
+            <h2 className="text-xl">Também no ar</h2>
             <p className="text-sm text-muted-foreground">
               Serviços publicados, ainda sem produto completo para o usuário
               final.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {others.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {others.map((product, index) => (
+              <div
+                key={product.id}
+                className={cn('reveal', revealDelay(index + 2))}
+              >
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         </section>

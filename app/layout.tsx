@@ -1,4 +1,4 @@
-import { Geist } from 'next/font/google';
+import { Fraunces, Geist } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
 import { Header } from '@/widgets/header';
 import { Footer } from '@/widgets/footer';
@@ -10,7 +10,14 @@ import '../styles/globals.css';
 
 const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-sans'
+  variable: '--font-geist',
+  display: 'swap'
+});
+
+const fraunces = Fraunces({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-display',
+  display: 'swap'
 });
 
 export const metadata: Metadata = {
@@ -55,7 +62,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={cn('font-sans', geist.variable)}
+      data-scroll-behavior="smooth"
+      className={cn('font-sans', geist.variable, fraunces.variable)}
     >
       <body className="flex min-h-screen flex-col bg-background text-foreground">
         <ThemeProvider>

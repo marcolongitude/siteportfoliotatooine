@@ -4,14 +4,15 @@ import { stackTones } from '@/shared/config/palette';
 import { site } from '@/shared/config/site';
 import { ExperienceTimeline } from '@/widgets/experience';
 import { skillGroups } from '../model/skills';
+import { cn } from '@/lib/utils';
 
 export function AboutPage() {
   return (
     <div className="space-y-14">
       <PageHeader title="Sobre" description={site.about} />
       <ExperienceTimeline />
-      <section>
-        <h2 className="mb-2 flex items-center gap-2 text-xl font-semibold tracking-tight">
+      <section className="reveal delay-300">
+        <h2 className="mb-2 flex items-center gap-2 text-xl">
           <span className="size-2 rounded-full bg-brand-lilac" aria-hidden />
           Skills e ferramentas
         </h2>
@@ -21,13 +22,18 @@ export function AboutPage() {
         <div className="space-y-6">
           {skillGroups.map((group) => (
             <div key={group.title}>
-              <h3 className="mb-2 text-sm font-medium">{group.title}</h3>
+              <h3 className="mb-2 font-sans text-sm font-medium tracking-normal">
+                {group.title}
+              </h3>
               <ul className="flex flex-wrap gap-2">
                 {group.techs.map((tech, index) => (
                   <li key={tech}>
                     <Badge
                       variant="outline"
-                      className={stackTones[index % stackTones.length]}
+                      className={cn(
+                        stackTones[index % stackTones.length],
+                        'transition-transform duration-300 motion-safe:hover:scale-105'
+                      )}
                     >
                       {tech}
                     </Badge>
@@ -38,8 +44,8 @@ export function AboutPage() {
           ))}
         </div>
       </section>
-      <section>
-        <h2 className="mb-2 flex items-center gap-2 text-xl font-semibold tracking-tight">
+      <section className="reveal delay-500">
+        <h2 className="mb-2 flex items-center gap-2 text-xl">
           <span className="size-2 rounded-full bg-brand-mint" aria-hidden />
           Interesses
         </h2>

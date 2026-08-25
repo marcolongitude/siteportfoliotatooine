@@ -1,4 +1,6 @@
 import { Badge } from '@/components/ui/badge';
+import { revealDelay } from '@/shared/config/motion';
+import { cn } from '@/lib/utils';
 import { experiences } from '../model/experience';
 
 type ExperienceTimelineProps = {
@@ -10,26 +12,30 @@ export function ExperienceTimeline({
 }: ExperienceTimelineProps) {
   return (
     <section className="w-full">
-      <h2 className="mb-6 flex items-center gap-2 text-xl font-semibold tracking-tight">
+      <h2 className="mb-6 flex items-center gap-2 text-xl">
         <span className="size-2 rounded-full bg-primary" aria-hidden />
         {heading}
       </h2>
       <ol className="relative space-y-6 border-l border-brand-lilac/40 pl-6">
-        {experiences.map((item) => (
-          <li key={`${item.company}-${item.period}`} className="relative">
+        {experiences.map((item, index) => (
+          <li
+            key={`${item.company}-${item.period}`}
+            className={cn('reveal relative', revealDelay(index))}
+          >
             <span
-              className={`absolute top-1.5 -left-[31px] size-3 rounded-full ring-4 ring-background ${
-                item.current ? 'bg-primary' : 'bg-brand-lilac'
-              }`}
+              className={cn(
+                'absolute top-1.5 -left-[31px] size-3 rounded-full ring-4 ring-background',
+                item.current ? 'bg-primary pulse-soft' : 'bg-brand-lilac'
+              )}
             />
             <p className="text-xs text-muted-foreground">{item.period}</p>
-            <h3 className="mt-1 text-sm font-medium">
+            <h3 className="mt-1 text-sm">
               {item.href ? (
                 <a
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:underline"
+                  className="hover:text-primary"
                 >
                   {item.company}
                 </a>

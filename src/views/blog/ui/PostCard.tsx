@@ -17,7 +17,7 @@ type PostCardProps = {
 
 export function PostCard({ post }: PostCardProps) {
   return (
-    <Card className="transition-colors hover:border-brand-lilac/40">
+    <Card className="lift hover:border-brand-lilac/40">
       <CardHeader>
         <Badge variant="outline" className="w-fit">
           {formatDatePt(post.createdAt)}
@@ -29,7 +29,7 @@ export function PostCard({ post }: PostCardProps) {
         <Button asChild variant="outline" size="sm">
           <a href={post.url} target="_blank" rel="noreferrer">
             Ler post
-            <ArrowUpRight />
+            <ArrowUpRight className="icon-nudge" />
           </a>
         </Button>
       </CardFooter>

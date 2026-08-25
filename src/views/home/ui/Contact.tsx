@@ -10,14 +10,14 @@ import { site } from '@/shared/config/site';
 
 export function Contact() {
   return (
-    <section>
-      <h2 className="mb-4 flex items-center gap-2 text-xl font-semibold tracking-tight">
+    <section className="reveal">
+      <h2 className="mb-4 flex items-center gap-2 text-xl">
         <span className="size-2 rounded-full bg-brand-apricot" aria-hidden />
         Entre em contato
       </h2>
       <div className="grid gap-3 sm:grid-cols-2">
         <Link href={`mailto:${site.email}`}>
-          <Card className="transition-colors hover:border-primary/30 hover:bg-primary/5">
+          <Card className="lift hover:border-primary/30 hover:bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Mail className="size-4" />
@@ -28,7 +28,7 @@ export function Contact() {
           </Card>
         </Link>
         <a href={site.whatsapp} target="_blank" rel="noreferrer">
-          <Card className="transition-colors hover:border-primary/30 hover:bg-primary/5">
+          <Card className="lift hover:border-primary/30 hover:bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MessageCircle className="size-4" />

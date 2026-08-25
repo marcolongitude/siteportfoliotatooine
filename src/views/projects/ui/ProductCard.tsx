@@ -25,7 +25,7 @@ export function ProductCard({ product, featured = false }: ProductCardProps) {
   return (
     <Card
       className={cn(
-        'h-full transition-colors hover:border-primary/30',
+        'lift h-full hover:border-primary/30',
         featured && 'border-primary/40 bg-primary/5'
       )}
     >
@@ -36,13 +36,9 @@ export function ProductCard({ product, featured = false }: ProductCardProps) {
           </Badge>
         </div>
         {featured ? (
-          <h2 className="font-heading text-2xl leading-snug font-medium">
-            {product.name}
-          </h2>
+          <h2 className="text-2xl">{product.name}</h2>
         ) : (
-          <h3 className="font-heading text-base leading-snug font-medium">
-            {product.name}
-          </h3>
+          <h3 className="text-base">{product.name}</h3>
         )}
         <CardDescription>{product.tagline}</CardDescription>
       </CardHeader>
@@ -66,7 +62,7 @@ export function ProductCard({ product, featured = false }: ProductCardProps) {
           >
             <a href={link.href} target="_blank" rel="noreferrer">
               {link.label}
-              <ArrowUpRight />
+              <ArrowUpRight className="icon-nudge" />
             </a>
           </Button>
         ))}

@@ -16,7 +16,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/70 backdrop-blur-md">
       <div className="page-wrap flex h-14 items-center justify-between">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
+        <Link href="/" className="font-heading text-base tracking-tight">
           {site.name}
         </Link>
 

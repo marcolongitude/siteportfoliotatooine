@@ -10,9 +10,11 @@ export function HomePage() {
   return (
     <div className="space-y-16">
       <Hero />
-      <StackList />
-      <section>
-        <h2 className="mb-3 flex items-center gap-2 text-xl font-semibold tracking-tight">
+      <div className="reveal delay-300">
+        <StackList />
+      </div>
+      <section className="reveal delay-500">
+        <h2 className="mb-3 flex items-center gap-2 text-xl">
           <span className="size-2 rounded-full bg-brand-mint" aria-hidden />
           Sobre
         </h2>

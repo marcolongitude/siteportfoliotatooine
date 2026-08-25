@@ -6,9 +6,9 @@
 @plugin '@tailwindcss/typography';
 
 /*
-  Design tokens — única fonte de cor, raio e layout.
+  Design tokens — única fonte de cor, tipo, raio, layout e movimento.
   Claro: :root  |  Escuro: .dark
-  Tailwind consome via @theme inline (bg-primary, text-brand-rose, etc.).
+  Tailwind consome via @theme inline (bg-primary, font-heading, etc.).
 */
 
 :root {
@@ -124,8 +124,8 @@
 }
 
 @theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
+  --font-heading: var(--font-display);
+  --font-sans: var(--font-geist);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -180,6 +180,18 @@
   padding-inline: var(--page-pad);
 }
 
+@utility reveal {
+  @apply motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 motion-safe:duration-700 motion-safe:ease-out motion-safe:fill-mode-both;
+}
+
+@utility lift {
+  @apply transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out motion-safe:hover:-translate-y-1;
+}
+
+@utility icon-nudge {
+  @apply transition-transform duration-300 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -193,6 +205,12 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-heading font-medium tracking-tight text-balance;
   }
 }
 
@@ -218,4 +236,55 @@
       var(--glow-mint),
       transparent 55%
     );
+  animation: atmosphere-drift 28s ease-in-out infinite alternate;
+}
+
+.hero-glow {
+  animation: glow-breathe 6s ease-in-out infinite alternate;
+}
+
+.pulse-soft {
+  animation: pulse-soft 2.6s ease-in-out infinite;
+}
+
+@keyframes atmosphere-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-2.5%, 1.5%, 0) scale(1.05);
+  }
+}
+
+@keyframes glow-breathe {
+  from {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--primary) 45%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 8px color-mix(in oklch, var(--primary) 0%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .site-atmosphere,
+  .hero-glow,
+  .pulse-soft {
+    animation: none;
+  }
 }

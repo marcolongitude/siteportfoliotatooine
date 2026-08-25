@@ -1,7 +1,9 @@
 import { fetchTabNewsPosts } from '@/shared/api/tabnews';
 import { FeedbackState } from '@/shared/ui/FeedbackState';
 import { PageHeader } from '@/shared/ui/PageHeader';
+import { revealDelay } from '@/shared/config/motion';
 import { site } from '@/shared/config/site';
+import { cn } from '@/lib/utils';
 import { PostCard } from './PostCard';
 
 export async function BlogPage() {
@@ -23,8 +25,10 @@ export async function BlogPage() {
         />
       ) : (
         <div className="flex flex-col gap-4">
-          {result.data.map((post) => (
-            <PostCard key={post.id} post={post} />
+          {result.data.map((post, index) => (
+            <div key={post.id} className={cn('reveal', revealDelay(index + 1))}>
+              <PostCard post={post} />
+            </div>
           ))}
         </div>
       )}
