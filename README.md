@@ -31,10 +31,11 @@ src/
   pages/                     # composição das páginas (pasta física: src/views, para não colidir com o Next)
   widgets/                   # header, footer, experience
   shared/
-    api/                     # TabNews
+    api/                     # TabNews e perfil público do GitHub
     config/site.ts
     config/theme.ts            # next-themes (claro / escuro / sistema)
     config/palette.ts          # classes de acento que leem os tokens
+    config/motion.ts           # delays da entrada em cena
     lib/format-date.ts
     ui/                      # PageHeader, ThemeProvider, ThemeToggle
 components/ui/               # shadcn (Button, Card, Badge, Separator, DropdownMenu)
@@ -44,10 +45,11 @@ components/ui/               # shadcn (Button, Card, Badge, Separator, DropdownM
 
 - **Projetos** — catálogo curado dos MVPs publicados no cluster Rancher/K3s (não a lista de repositórios do GitHub). Hoje: PointBook (site + app + API) e ChatUp (API em staging). Grafana, Rancher e demais peças de infra ficam de fora.
 - **TabNews** — posts em `https://www.tabnews.com.br/api/v1/contents/marcocpdti`. Comentários (`parent_id`) são filtrados.
+- **GitHub** — perfil público de `marcolongitude` (`GET /users/{username}`) só para o avatar do hero. Se a API falhar, usa a foto local.
 
 ## Visual
 
-Cores, raio e largura da página vivem em `styles/globals.css` (`:root` claro, `.dark` escuro). Não há hex espalhado nos componentes: usam `bg-primary`, `text-brand-rose`, etc. O seletor no header grava a preferência (claro, escuro ou sistema) via `next-themes`.
+Cores, raio, fontes e movimento vivem em `styles/globals.css`. Títulos usam Fraunces (`font-heading`); UI e corpo usam Geist (`font-sans`). Entrada de seções: utilitário `reveal`. Hover de cards: `lift`. Quem prefere menos movimento (`prefers-reduced-motion`) vê o estado estático.
 
 ## Scripts
 
@@ -72,6 +74,7 @@ Trabalho na branch `feat/modernize-portfolio`, com atuação da IA Grok (Cursor)
 5. **UI** — header sticky, hero com CTAs, stacks em badges, cards de projeto e posts, timeline, estados de loading/erro/vazio.
 6. **Projetos** — vitrine de MVPs no ar (PointBook em destaque e ChatUp em staging), a partir dos workloads ativos no Rancher. Lista do GitHub saiu da página e da API.
 7. **Visual** — paleta pastel (rosa, lilás, menta, damasco) com temas claro e escuro; tokens centralizados; atmosfera de fundo; seletor de tema.
+8. **Tipografia e movimento** — Fraunces nos títulos, Geist no restante; entrada em fade/slide, hover com elevação, atmosfera lenta; `prefers-reduced-motion` respeitado.
 
 ## Decisões de stack (resumo)
 
