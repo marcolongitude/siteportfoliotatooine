@@ -1,33 +1,40 @@
-import { fetchGithubRepos } from '@/shared/api/github';
-import { FeedbackState } from '@/shared/ui/FeedbackState';
 import { PageHeader } from '@/shared/ui/PageHeader';
-import { site } from '@/shared/config/site';
-import { ProjectCard } from './ProjectCard';
+import { products } from '../model/products';
+import { ProductCard } from './ProductCard';
 
-export async function ProjectsPage() {
-  const result = await fetchGithubRepos();
+export function ProjectsPage() {
+  const featured = products.filter((product) => product.featured);
+  const others = products.filter((product) => !product.featured);
 
   return (
-    <div>
+    <div className="space-y-12">
       <PageHeader
         title="Projetos"
-        description="Estudos, pesquisas e prática. A lista vem da API pública do GitHub."
+        description="O que está no ar como produto. Estudos, rascunhos e repositórios sem andamento ficam de fora."
       />
 
-      {!result.ok ? (
-        <FeedbackState title="Falha ao carregar" description={result.message} />
-      ) : result.data.length === 0 ? (
-        <FeedbackState
-          title="Nenhum repositório público"
-          description={`Nada encontrado para ${site.githubUser}.`}
-        />
-      ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {result.data.map((repo) => (
-            <ProjectCard key={repo.id} repo={repo} />
-          ))}
-        </div>
-      )}
+      <div className="grid gap-4">
+        {featured.map((product) => (
+          <ProductCard key={product.id} product={product} featured />
+        ))}
+      </div>
+
+      {others.length > 0 ? (
+        <section className="space-y-4">
+          <div className="space-y-1">
+            <h2 className="text-xl font-semibold tracking-tight">Também no ar</h2>
+            <p className="text-sm text-muted-foreground">
+              Serviços publicados, ainda sem produto completo para o usuário
+              final.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {others.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 # Portfólio — Marco Aurélio
 
-Site pessoal de Marco Aurélio (frontend developer). Conteúdo em português, com projetos via GitHub e posts via TabNews.
+Site pessoal de Marco Aurélio (frontend developer). Conteúdo em português, com MVPs publicados e posts via TabNews.
 
 Repositório: [marcolongitude/siteportfoliotatooine](https://github.com/marcolongitude/siteportfoliotatooine)
 
@@ -30,7 +30,7 @@ src/
   pages/                     # composição das páginas (pasta física: src/views, para não colidir com o Next)
   widgets/                   # header, footer, experience
   shared/
-    api/                     # GitHub e TabNews
+    api/                     # TabNews
     config/site.ts
     lib/format-date.ts
     ui/                      # PageHeader, FeedbackState
@@ -39,7 +39,7 @@ components/ui/               # shadcn (Button, Card, Badge, Separator)
 
 ## Fontes de dados
 
-- **GitHub** — repositórios públicos de `marcolongitude` (`GET /users/{user}/repos`). Token opcional em `GITHUB_TOKEN` (veja `.env.example`) para evitar rate limit anônimo. Forks ficam de fora. Erro e lista vazia têm UI própria.
+- **Projetos** — catálogo curado dos MVPs publicados no cluster Rancher/K3s (não a lista de repositórios do GitHub). Hoje: PointBook (site + app + API) e ChatUp (API em staging). Grafana, Rancher e demais peças de infra ficam de fora.
 - **TabNews** — posts em `https://www.tabnews.com.br/api/v1/contents/marcocpdti`. Comentários (`parent_id`) são filtrados.
 
 ## Scripts
@@ -52,7 +52,7 @@ npm run start
 npm run lint
 ```
 
-Copie `.env.example` para `.env.local` se for usar o token do GitHub.
+Nenhuma variável de ambiente é obrigatória. `.env.example` documenta isso.
 
 ## O que foi feito nesta modernização
 
@@ -61,8 +61,9 @@ Trabalho na branch `feat/modernize-portfolio`, com atuação da IA Grok (Cursor)
 1. **Higienização** — identidade do Jean Rondón removida; Pages Router morto; tokens de GitHub apagados do código (revogue PATs antigos no GitHub).
 2. **Upgrade** — Next 14 → 16, React 18 → 19, Tailwind 3 → 4, TypeScript 5.9. Fonte Geist, Metadata API, `eslint .`.
 3. **shadcn/ui** — preset Nova + Radix, tema dark. Button, Card, Badge, Separator.
-4. **Estrutura** — `shared/api` para GitHub e TabNews; widgets de header/footer/timeline; páginas compostas em `src/pages`.
+4. **Estrutura** — `shared/api` para TabNews; widgets de header/footer/timeline; páginas compostas em `src/pages`.
 5. **UI** — header sticky, hero com CTAs, stacks em badges, cards de projeto e posts, timeline, estados de loading/erro/vazio.
+6. **Projetos** — vitrine de MVPs no ar (PointBook em destaque e ChatUp em staging), a partir dos workloads ativos no Rancher. Lista do GitHub saiu da página e da API.
 
 ## Decisões de stack (resumo)
 
