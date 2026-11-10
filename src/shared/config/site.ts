@@ -21,7 +21,8 @@ export const site = {
     { href: '/', label: 'Home' },
     { href: '/sobre', label: 'Sobre' },
     { href: '/projetos', label: 'Projetos' },
-    { href: '/blog', label: 'Blog' }
+    { href: '/blog', label: 'Blog' },
+    { href: '/funcoes', label: 'Funções' }
   ],
   stacks: [
     'TypeScript',

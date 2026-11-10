@@ -32,7 +32,7 @@ src/
   pages/                     # composição das páginas (pasta física: src/views, para não colidir com o Next)
   widgets/                   # header, footer, experience
   shared/
-    api/                     # TabNews e perfil público do GitHub
+    api/                     # TabNews, GitHub e cotação USD/BRL (AwesomeAPI)
     config/site.ts
     config/theme.ts            # next-themes (claro / escuro / sistema)
     config/palette.ts          # classes de acento que leem os tokens
@@ -47,6 +47,15 @@ components/ui/               # shadcn (Button, Card, Badge, Separator, DropdownM
 - **Projetos** — catálogo curado dos MVPs publicados no cluster Rancher/K3s (não a lista de repositórios do GitHub). Hoje: PointBook (site + app + API) e ChatUp (API em staging). Grafana, Rancher e demais peças de infra ficam de fora.
 - **TabNews** — posts em `https://www.tabnews.com.br/api/v1/contents/marcocpdti`. Comentários (`parent_id`) são filtrados.
 - **GitHub** — perfil público de `marcolongitude` (`GET /users/{username}`) só para o avatar do hero. Se a API falhar, usa a foto local.
+- **Funções / USD-BRL** — cotação comercial (compra e venda) via AwesomeAPI, `GET https://economia.awesomeapi.com.br/json/last/USD-BRL`. Sem chave a resposta vem com cache de ~1 minuto. Fetch no servidor (a API não libera CORS para o browser). Token opcional: `AWESOMEAPI_TOKEN` no header `x-api-key`.
+
+### Chave da AwesomeAPI (opcional)
+
+1. Crie conta em [awesomeapi.com.br](https://awesomeapi.com.br).
+2. Abra a área de API Keys / Token.
+3. Copie o token para `AWESOMEAPI_TOKEN` no `.env.local` (veja `.env.example`).
+
+Plano gratuito: 100 mil requisições/mês. Instruções oficiais: [docs da API key](https://docs.awesomeapi.com.br/instrucoes-api-key) e [API de moedas](https://docs.awesomeapi.com.br/api-de-moedas).
 
 ## Visual
 
@@ -60,10 +69,10 @@ npm run dev      # http://localhost:3000
 npm run build
 npm run start
 npm run lint
-npm run test     # Vitest: TabNews, avatar GitHub, catálogo de projetos
+npm run test     # Vitest: TabNews, GitHub, MVPs, cotação e conversão USD/BRL
 ```
 
-Nenhuma variável de ambiente é obrigatória. `.env.example` documenta isso.
+Nenhuma variável de ambiente é obrigatória. `.env.example` documenta o token opcional da AwesomeAPI.
 
 ## O que foi feito nesta modernização
 
@@ -77,7 +86,8 @@ Trabalho na branch `feat/modernize-portfolio`, com atuação da IA Grok (Cursor)
 6. **Projetos** — vitrine de MVPs no ar (PointBook em destaque e ChatUp em staging), a partir dos workloads ativos no Rancher. Lista do GitHub saiu da página e da API.
 7. **Visual** — paleta pastel (rosa, lilás, menta, damasco) com temas claro e escuro; tokens centralizados; atmosfera de fundo; seletor de tema.
 8. **Tipografia e movimento** — Fraunces nos títulos, Geist no restante; entrada em fade/slide, hover com elevação, atmosfera lenta; `prefers-reduced-motion` respeitado.
-9. **Testes** — Vitest só nos contratos que quebram o site: filtro do TabNews, avatar do GitHub e vitrine de MVPs. Sem teste de layout.
+9. **Testes** — Vitest só nos contratos que quebram o site: filtro do TabNews, avatar do GitHub, vitrine de MVPs, parse da cotação USD/BRL e conversão. Sem teste de layout.
+10. **Funções** — página `/funcoes` com cotação USD/BRL e conversor. FSD: rota fina em `app`, composição em `src/pages/funcoes`, HTTP em `shared/api`.
 
 ## Decisões de stack (resumo)
 
