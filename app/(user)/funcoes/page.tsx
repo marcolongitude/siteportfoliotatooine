@@ -3,7 +3,8 @@ import { FuncoesPage } from '@/pages/funcoes';
 
 export const metadata: Metadata = {
   title: 'Funções',
-  description: 'Utilitários práticos — cotação do dólar em real e conversor USD/BRL.'
+  description:
+    'Utilitários práticos — cotação USD/BRL e gerador de cartão de teste (Visa e Mastercard).'
 };
 
 export default function Page() {
