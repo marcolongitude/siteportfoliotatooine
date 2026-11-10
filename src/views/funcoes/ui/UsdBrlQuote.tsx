@@ -21,7 +21,7 @@ export function UsdBrlQuote({ quote }: UsdBrlQuoteProps) {
   const up = quote.pctChange >= 0;
 
   return (
-    <Card className="lift max-w-xl hover:border-primary/30">
+    <Card className="lift h-full hover:border-primary/30">
       <CardHeader>
         <div className="flex flex-wrap items-center gap-2">
           <Badge>USD → BRL</Badge>
