@@ -9,7 +9,7 @@ export type TabNewsPost = {
   createdAt: string;
 };
 
-type TabNewsContentDto = {
+export type TabNewsContentDto = {
   id: string;
   title: string;
   slug: string;
@@ -17,6 +17,23 @@ type TabNewsContentDto = {
   parent_id: string | null;
   status?: string;
 };
+
+export function selectTabNewsPosts(payload: TabNewsContentDto[]): TabNewsPost[] {
+  return payload
+    .filter(
+      (item) =>
+        item.parent_id === null &&
+        Boolean(item.title) &&
+        item.status !== 'draft'
+    )
+    .map((item) => ({
+      id: item.id,
+      title: item.title,
+      slug: item.slug,
+      url: `${site.tabnews}/${item.slug}`,
+      createdAt: item.created_at
+    }));
+}
 
 export async function fetchTabNewsPosts(): Promise<Result<TabNewsPost[]>> {
   try {
@@ -37,22 +54,7 @@ export async function fetchTabNewsPosts(): Promise<Result<TabNewsPost[]>> {
 
     const payload = (await response.json()) as TabNewsContentDto[];
 
-    const posts = payload
-      .filter(
-        (item) =>
-          item.parent_id === null &&
-          Boolean(item.title) &&
-          item.status !== 'draft'
-      )
-      .map((item) => ({
-        id: item.id,
-        title: item.title,
-        slug: item.slug,
-        url: `${site.tabnews}/${item.slug}`,
-        createdAt: item.created_at
-      }));
-
-    return { ok: true, data: posts };
+    return { ok: true, data: selectTabNewsPosts(payload) };
   } catch {
     return {
       ok: false,
