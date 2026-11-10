@@ -8,27 +8,14 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { UsdBrlQuote as Quote } from '@/shared/api/usd-brl';
+import { formatDateTimePt } from '@/shared/lib/format-date';
+import { formatPctChange } from '@/shared/lib/format-number';
 import { formatRate } from '../model/convert-usd-brl';
 import { UsdBrlConverter } from './UsdBrlConverter';
 
 type UsdBrlQuoteProps = {
   quote: Quote;
 };
-
-function formatUpdatedAt(date: Date): string {
-  return new Intl.DateTimeFormat('pt-BR', {
-    dateStyle: 'short',
-    timeStyle: 'short'
-  }).format(date);
-}
-
-function formatPctChange(value: number): string {
-  return `${new Intl.NumberFormat('pt-BR', {
-    signDisplay: 'exceptZero',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }).format(value)}%`;
-}
 
 export function UsdBrlQuote({ quote }: UsdBrlQuoteProps) {
   const up = quote.pctChange >= 0;
@@ -71,7 +58,7 @@ export function UsdBrlQuote({ quote }: UsdBrlQuoteProps) {
       </CardContent>
       <CardFooter>
         <p className="text-xs text-muted-foreground">
-          Atualizado em {formatUpdatedAt(quote.updatedAt)}. Fonte:{' '}
+          Atualizado em {formatDateTimePt(quote.updatedAt)}. Fonte:{' '}
           <a
             href="https://docs.awesomeapi.com.br/api-de-moedas"
             className="underline-offset-4 hover:underline"

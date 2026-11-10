@@ -5,3 +5,10 @@ export function formatDatePt(isoDate: string): string {
     year: 'numeric'
   }).format(new Date(isoDate));
 }
+
+export function formatDateTimePt(date: Date): string {
+  return new Intl.DateTimeFormat('pt-BR', {
+    dateStyle: 'short',
+    timeStyle: 'short'
+  }).format(date);
+}
