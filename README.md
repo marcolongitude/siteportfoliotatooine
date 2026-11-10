@@ -16,6 +16,7 @@ Repositório: [marcolongitude/siteportfoliotatooine](https://github.com/marcolon
 | Tailwind CSS | 4.3.3 |
 | shadcn/ui | 4.19 (preset Nova, Radix) |
 | next-themes | tema claro / escuro / sistema |
+| Vitest | 5.x (poucos testes nos contratos do portfólio) |
 | ESLint | 9.39.x (eslint-config-next 16 ainda não fecha com ESLint 10) |
 | Node | >= 20.9 |
 
@@ -59,6 +60,7 @@ npm run dev      # http://localhost:3000
 npm run build
 npm run start
 npm run lint
+npm run test     # Vitest: TabNews, avatar GitHub, catálogo de projetos
 ```
 
 Nenhuma variável de ambiente é obrigatória. `.env.example` documenta isso.
@@ -75,6 +77,7 @@ Trabalho na branch `feat/modernize-portfolio`, com atuação da IA Grok (Cursor)
 6. **Projetos** — vitrine de MVPs no ar (PointBook em destaque e ChatUp em staging), a partir dos workloads ativos no Rancher. Lista do GitHub saiu da página e da API.
 7. **Visual** — paleta pastel (rosa, lilás, menta, damasco) com temas claro e escuro; tokens centralizados; atmosfera de fundo; seletor de tema.
 8. **Tipografia e movimento** — Fraunces nos títulos, Geist no restante; entrada em fade/slide, hover com elevação, atmosfera lenta; `prefers-reduced-motion` respeitado.
+9. **Testes** — Vitest só nos contratos que quebram o site: filtro do TabNews, avatar do GitHub e vitrine de MVPs. Sem teste de layout.
 
 ## Decisões de stack (resumo)
 

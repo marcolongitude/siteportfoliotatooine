@@ -7,7 +7,7 @@ export type GithubUser = {
   profileUrl: string;
 };
 
-type GithubUserDto = {
+export type GithubUserDto = {
   login: string;
   avatar_url: string;
   html_url: string;
@@ -17,6 +17,14 @@ function withAvatarSize(url: string, size: number) {
   const parsed = new URL(url);
   parsed.searchParams.set('s', String(size));
   return parsed.toString();
+}
+
+export function toGithubUser(payload: GithubUserDto, size = 256): GithubUser {
+  return {
+    login: payload.login,
+    avatarUrl: withAvatarSize(payload.avatar_url, size),
+    profileUrl: payload.html_url
+  };
 }
 
 export async function fetchGithubUser(): Promise<Result<GithubUser>> {
@@ -44,11 +52,7 @@ export async function fetchGithubUser(): Promise<Result<GithubUser>> {
 
     return {
       ok: true,
-      data: {
-        login: payload.login,
-        avatarUrl: withAvatarSize(payload.avatar_url, 256),
-        profileUrl: payload.html_url
-      }
+      data: toGithubUser(payload)
     };
   } catch {
     return {
