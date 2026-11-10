@@ -3,13 +3,14 @@ import { isLuhnValid } from '@/shared/lib/luhn';
 export const LAST_DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 
 export type LastDigit = (typeof LAST_DIGITS)[number];
-export type CardBrandId = 'visa' | 'mastercard';
+export type CardBrandId = 'visa' | 'mastercard' | 'amex';
 
 export type CardBrand = {
   id: CardBrandId;
   label: string;
   prefixes: readonly string[];
   length: number;
+  groups: readonly number[];
 };
 
 export const cardBrands: readonly CardBrand[] = [
@@ -17,13 +18,22 @@ export const cardBrands: readonly CardBrand[] = [
     id: 'visa',
     label: 'Visa',
     prefixes: ['4'],
-    length: 16
+    length: 16,
+    groups: [4, 4, 4, 4]
   },
   {
     id: 'mastercard',
     label: 'Mastercard',
     prefixes: ['51', '52', '53', '54', '55'],
-    length: 16
+    length: 16,
+    groups: [4, 4, 4, 4]
+  },
+  {
+    id: 'amex',
+    label: 'American Express',
+    prefixes: ['34', '37'],
+    length: 15,
+    groups: [4, 6, 5]
   }
 ];
 
@@ -37,8 +47,22 @@ export function getCardBrand(id: CardBrandId): CardBrand {
   return brand;
 }
 
-export function formatCardNumber(pan: string): string {
-  return pan.replace(/(\d{4})(?=\d)/g, '$1 ');
+export function formatCardNumber(
+  pan: string,
+  groups: readonly number[] = [4, 4, 4, 4]
+): string {
+  const parts: string[] = [];
+  let offset = 0;
+
+  for (const size of groups) {
+    if (offset >= pan.length) {
+      break;
+    }
+    parts.push(pan.slice(offset, offset + size));
+    offset += size;
+  }
+
+  return parts.join(' ');
 }
 
 export function generateCardNumber(
