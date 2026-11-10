@@ -17,6 +17,7 @@ import {
   cardBrands,
   formatCardNumber,
   generateCardNumber,
+  getCardBrand,
   LAST_DIGITS,
   type CardBrandId,
   type LastDigit
@@ -68,7 +69,8 @@ export function CardNumberGenerator() {
         <CardTitle className="text-2xl">Gerador de cartão</CardTitle>
         <CardDescription>
           Número de teste para desenvolvimento. Visa começa com 4; Mastercard
-          com 51–55. Ambos têm 16 dígitos e dígito verificador Luhn.
+          com 51–55; American Express com 34 ou 37 (15 dígitos, formato 4-6-5).
+          Todos usam dígito verificador Luhn.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -129,7 +131,9 @@ export function CardNumberGenerator() {
               className="font-heading min-w-0 flex-1 px-3 py-2 text-lg tracking-wide tabular-nums"
               aria-live="polite"
             >
-              {pan ? formatCardNumber(pan) : '•••• •••• •••• •••0'}
+              {pan
+                ? formatCardNumber(pan, getCardBrand(brandId).groups)
+                : '•••• •••• •••• •••0'}
             </p>
             <Button
               type="button"

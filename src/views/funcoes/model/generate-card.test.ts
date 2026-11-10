@@ -32,10 +32,27 @@ describe('generateCardNumber', () => {
       expect(isLuhnValid(pan)).toBe(true);
     }
   });
+
+  it('gera American Express com 15 dígitos, prefixo 34/37, Luhn e dígito final', () => {
+    for (const lastDigit of LAST_DIGITS) {
+      const pan = generateCardNumber('amex', lastDigit, () => 4);
+
+      expect(pan).toHaveLength(15);
+      expect(pan.startsWith('34')).toBe(true);
+      expect(pan.endsWith(String(lastDigit))).toBe(true);
+      expect(isLuhnValid(pan)).toBe(true);
+    }
+  });
 });
 
 describe('formatCardNumber', () => {
   it('agrupa de 4 em 4', () => {
     expect(formatCardNumber('4111111111111111')).toBe('4111 1111 1111 1111');
+  });
+
+  it('agrupa American Express em 4-6-5', () => {
+    expect(formatCardNumber('378282246310005', [4, 6, 5])).toBe(
+      '3782 822463 10005'
+    );
   });
 });
